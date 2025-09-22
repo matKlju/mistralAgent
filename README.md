@@ -21,8 +21,21 @@ A minimal project scaffold for experimenting with an AI agent powered by [Mistra
    - Copy `.env.example` to `.env` (create one if needed).
    - Add your `MISTRAL_API_KEY` and any other secrets.
 
+## Usage
+The repository includes a lightweight agent wrapper in `app/agent.py`:
+
+```python
+from app import create_agent
+
+agent = create_agent()
+print(agent.run("Summarise the LangChain toolkit."))
+```
+
+The helper loads `MISTRAL_API_KEY` from your environment, builds a LangChain chain,
+and returns the agent's response as a string. Pass `context="..."` to supply extra
+background information when needed.
+
 ## Next Steps
-- Build an agent entry point, e.g., `app/agent.py`, that wires LangChain with the `mistralai` client.
 - Add FastAPI routes (e.g., in `app/main.py`) to serve the agent over HTTP.
 - Extend tests and tooling as the agent matures.
 
