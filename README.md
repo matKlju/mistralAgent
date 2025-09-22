@@ -1,11 +1,12 @@
-# Mistral Agent Starter
+# Mistral Service Generator
 
-A minimal project scaffold for experimenting with an AI agent powered by [Mistral](https://docs.mistral.ai), [LangChain](https://python.langchain.com), and a few complementary tools.
+A streamlined project for generating service definitions with Mistral and LangChain. The agent combines a service design guide with JSON templates to produce fully wired service flows.
 
 ## Features
-- Python-focused `.gitignore` and dependency lock-in via `requirements.txt`.
-- Suggested libraries for building conversational agents with Mistral + LangChain.
-- Basic FastAPI skeleton recommendation for exposing the agent as a service.
+- Preconfigured `MistralAgent` wrapper (`app/agent.py`) that loads environment secrets via `python-dotenv`.
+- Service design guide (`app/SERVICE_DESIGN_GUIDE.md`) distilled from example workflows to keep generations consistent.
+- Default context and sample question (`app/test_context.json`, `app/constants.py`) demonstrating a complete start→finish service.
+- Automated UUID regeneration and code-fence stripping to keep saved JSON responses clean (`main.py`).
 
 ## Getting Started
 1. **Create a virtual environment**
@@ -18,26 +19,35 @@ A minimal project scaffold for experimenting with an AI agent powered by [Mistra
    pip install -r requirements.txt
    ```
 3. **Configure credentials**
-   - Copy `.env.example` to `.env` (create one if needed).
-   - Add your `MISTRAL_API_KEY` and any other secrets.
+   ```bash
+   cp .env.example .env  # if needed
+   ```
+   Add your `MISTRAL_API_KEY` to `.env` (or export it) so the agent can reach Mistral’s API.
 
-## Usage
-The repository includes a lightweight agent wrapper in `app/agent.py`:
+## Generating a Service
+All configuration is file-driven. Update the following as needed:
+- **System prompt & defaults**: `app/constants.py`
+- **Design guide**: `app/SERVICE_DESIGN_GUIDE.md`
+- **Example context**: `app/test_context.json`
 
-```python
-from app import create_agent
-
-agent = create_agent()
-print(agent.run("Summarise the LangChain toolkit."))
+Then run:
+```bash
+python main.py
 ```
+This will:
+1. Load the design guide and example context.
+2. Ask the default sample question (also defined in `app/constants.py`).
+3. Generate a service JSON response, strip Markdown fences, refresh UUIDs, and save the result to `service_response.json`.
+4. Print the normalized JSON to stdout.
 
-The helper loads `MISTRAL_API_KEY` from your environment, builds a LangChain chain,
-and returns the agent's response as a string. Pass `context="..."` to supply extra
-background information when needed.
+## Customising Generation
+- **Change the sample prompt**: edit `DEFAULT_SAMPLE_QUESTION` in `app/constants.py`.
+- **Swap or edit context**: modify `app/test_context.json` and/or the guide.
+- **Use a different output file**: update `DEFAULT_OUTPUT_PATH` in `app/constants.py`.
+- **Extend helper logic**: adjust `app/prompt_utils.py` or `main.py` if you need additional preprocessing.
 
-## Next Steps
-- Add FastAPI routes (e.g., in `app/main.py`) to serve the agent over HTTP.
-- Extend tests and tooling as the agent matures.
+## Testing & Validation
+Currently the repository focuses on generation. Add unit tests or integration scripts as you extend the agent’s functionality (e.g., verifying JSON schema compliance, checking edge wiring).
 
 ## Project Status
-Initial scaffold committed with Git so you can track iterative improvements with confidence.
+The workflow has been tailored for file-based configuration and automated service generation—ready to adapt as you add more templates or refine the guide.

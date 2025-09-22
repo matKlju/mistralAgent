@@ -7,7 +7,11 @@ from typing import Optional
 
 from langchain_core.prompts import ChatPromptTemplate
 
-from .constants import DEFAULT_CONTEXT, DEFAULT_CONTEXT_PATH
+from .constants import (
+    DEFAULT_CONTEXT,
+    DEFAULT_CONTEXT_PATH,
+    SERVICE_DESIGN_GUIDE,
+)
 
 PROMPT_MESSAGES = [
     ("system", "{system_prompt}"),
@@ -15,16 +19,22 @@ PROMPT_MESSAGES = [
 ]
 
 
-def load_context_from_file(path: Path) -> str:
-    """Read a context file from disk."""
+def load_context_from_file(path: Path, *, include_guide: bool = True) -> str:
+    """Read a context file from disk, optionally prefixing the guide."""
 
-    return path.read_text(encoding="utf-8")
+    try:
+        content = path.read_text(encoding="utf-8")
+    except OSError:
+        return merge_with_guide(
+            f"Context file '{path}' could not be read.", include_guide=include_guide
+        )
+    return merge_with_guide(content, include_guide=include_guide)
 
 
-def load_default_context() -> str:
+def load_default_context(*, include_guide: bool = True) -> str:
     """Load the shared default context shipped with the repository."""
 
-    return DEFAULT_CONTEXT
+    return merge_with_guide(DEFAULT_CONTEXT, include_guide=include_guide)
 
 
 def build_prompt_template() -> ChatPromptTemplate:
@@ -39,3 +49,11 @@ def format_context(context: Optional[str]) -> str:
     if context and context.strip():
         return f"Context provided:\n{context.strip()}"
     return "No additional context provided."
+
+
+def merge_with_guide(content: str, *, include_guide: bool = True) -> str:
+    """Prepend the design guide when requested."""
+
+    if include_guide and SERVICE_DESIGN_GUIDE.strip():
+        return f"{SERVICE_DESIGN_GUIDE.strip()}\n\n---\n\n{content.strip()}"
+    return content.strip()

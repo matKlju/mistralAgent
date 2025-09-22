@@ -17,5 +17,10 @@ try:
     DEFAULT_CONTEXT = DEFAULT_CONTEXT_PATH.read_text(encoding="utf-8")
 except OSError:
     DEFAULT_CONTEXT = "No bundled test context available."
+SERVICE_DESIGN_GUIDE_PATH = Path(__file__).with_name("SERVICE_DESIGN_GUIDE.md")
+try:
+    SERVICE_DESIGN_GUIDE = SERVICE_DESIGN_GUIDE_PATH.read_text(encoding="utf-8")
+except OSError:
+    SERVICE_DESIGN_GUIDE = "Service design guide not found."
 DEFAULT_SAMPLE_QUESTION = "Create a service that returns the current national holidays of the current year, for Estonia. Use this api : https://openholidaysapi.org/swagger/v1/swagger.json"
 DEFAULT_OUTPUT_PATH = Path(__file__).resolve().parent.parent / "service_response.json"
