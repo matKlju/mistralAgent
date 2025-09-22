@@ -3,7 +3,9 @@
 from __future__ import annotations
 
 import argparse
+import json
 import sys
+import uuid
 from pathlib import Path
 from typing import Sequence
 
@@ -80,6 +82,54 @@ def strip_code_fences(text: str) -> str:
     return "\n".join(lines).strip()
 
 
+def ensure_uuid_node_ids(text: str) -> str:
+    """Rewrite node IDs (and associated edges) to fresh UUID4 values."""
+
+    try:
+        payload = json.loads(text)
+    except json.JSONDecodeError:
+        return text
+
+    if not isinstance(payload, dict):
+        return text
+
+    nodes = payload.get("nodes")
+    if not isinstance(nodes, list):
+        return text
+
+    id_mapping: dict[str, str] = {}
+    for node in nodes:
+        if not isinstance(node, dict):
+            continue
+        old_id = node.get("id")
+        new_id = str(uuid.uuid4())
+        node["id"] = new_id
+        if isinstance(old_id, str):
+            id_mapping[old_id] = new_id
+
+        data = node.get("data")
+        if isinstance(data, dict):
+            assign_elements = data.get("assignElements")
+            if isinstance(assign_elements, list):
+                for element in assign_elements:
+                    if isinstance(element, dict):
+                        element["id"] = str(uuid.uuid4())
+
+    edges = payload.get("edges")
+    if isinstance(edges, list):
+        for edge in edges:
+            if not isinstance(edge, dict):
+                continue
+            source = edge.get("source")
+            target = edge.get("target")
+            if isinstance(source, str) and source in id_mapping:
+                edge["source"] = id_mapping[source]
+            if isinstance(target, str) and target in id_mapping:
+                edge["target"] = id_mapping[target]
+
+    return json.dumps(payload, ensure_ascii=False, indent=2)
+
+
 def main(argv: Sequence[str] | None = None) -> int:
     """Execute the CLI workflow and print the agent response."""
 
@@ -105,13 +155,14 @@ def main(argv: Sequence[str] | None = None) -> int:
             context_value = load_default_context()
         response = agent.run(question, context=context_value)
         cleaned_response = strip_code_fences(response)
+        normalized_response = ensure_uuid_node_ids(cleaned_response)
         output_path = args.output_file or DEFAULT_OUTPUT_PATH
-        output_path.write_text(cleaned_response, encoding="utf-8")
+        output_path.write_text(normalized_response, encoding="utf-8")
     except Exception as exc:  # pragma: no cover - simple CLI guard
         print(f"Error running agent: {exc}", file=sys.stderr)
         return 1
 
-    print(cleaned_response)
+    print(normalized_response)
     return 0
 
 

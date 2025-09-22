@@ -1,1 +1,506 @@
-{"nodes":[{"id":"07dcbb9c-a7eb-4883-894d-edb73ceeed73","type":"start","position":{"x":0,"y":0},"data":{"type":"start"},"className":"start","selectable":false,"draggable":false,"measured":{"width":350,"height":67}},{"id":"2f2058f2-8fcb-4b32-a3b9-5f0002130fcd","position":{"x":0,"y":180},"data":{"label":"Assign - 1","type":"step","stepType":"assign","readonly":false,"assignElements":[{"id":"ed664dde-237f-4dee-a8d2-41c922656aac","key":"name","value":"${\"ahmed\"}"}],"multiChoiceQuestion":{"question":"","buttons":[{"id":"1","title":"Jah","payload":"#service, /POST/services/active/test2_mcq_undefined_0"},{"id":"2","title":"Ei","payload":"#service, /POST/services/active/test2_mcq_undefined_1"}]},"dynamicChoices":{"list":"","serviceName":"","key":"","payloadKeys":""}},"className":"step","type":"custom","measured":{"width":350,"height":42},"selected":false},{"id":"260f6cbe-b962-4c4c-804e-aa55b8e6ea44","position":{"x":0,"y":360},"data":{"label":"Send message to client - 1","type":"step","stepType":"textfield","readonly":false,"message":"<p>hello everyone</p>","multiChoiceQuestion":{"question":"","buttons":[{"id":"1","title":"Jah","payload":"#service, /POST/services/active/test2_mcq_1_0"},{"id":"2","title":"Ei","payload":"#service, /POST/services/active/test2_mcq_1_1"}]},"dynamicChoices":{"list":"","serviceName":"","key":"","payloadKeys":""}},"className":"step","type":"custom","measured":{"width":350,"height":66},"selected":false},{"id":"b03b6e57-62e2-4cef-895d-ec0ae18869c2","position":{"x":0,"y":540},"data":{"label":"Condition - 1","type":"step","stepType":"condition","readonly":false,"rules":{"id":"40577d69-caf9-4598-8c36-cca149f0af17","children":[{"id":"62c89233-0d0d-4fb6-b772-055b012662b1","field":"name","operator":"===","value":"Ahmed"}],"type":"and","not":false},"multiChoiceQuestion":{"question":"","buttons":[{"id":"1","title":"Jah","payload":"#service, /POST/services/active/test2_mcq_1_0"},{"id":"2","title":"Ei","payload":"#service, /POST/services/active/test2_mcq_1_1"}]},"dynamicChoices":{"list":"","serviceName":"","key":"","payloadKeys":""}},"className":"step","type":"custom","measured":{"width":350,"height":42},"selected":false},{"id":"501f2fd7-f675-486e-a421-a00dc9f8fa24","position":{"x":-200,"y":720},"data":{"label":"Multi-choice question - 1","type":"step","stepType":"multi-choice-question","readonly":false,"multiChoiceQuestion":{"question":"hello","buttons":[{"id":"1","title":"Jah","payload":"#service, /POST/services/active/test2_mcq_1_0"},{"id":"2","title":"Ei","payload":"#service, /POST/services/active/test2_mcq_1_1"}]},"dynamicChoices":{"list":"","serviceName":"","key":"","payloadKeys":""}},"className":"step","type":"custom","measured":{"width":350,"height":66}},{"id":"5dd7ef1b-667b-48c7-832f-158acb9ef5b5","position":{"x":-400,"y":900},"data":{"label":"Dynamic Choices - 1","type":"finishing-step","stepType":"dynamic-choices","readonly":false},"className":"dynamic-choices","type":"custom","measured":{"width":350,"height":42}},{"id":"b1cc8326-0d6f-4646-b180-8642505c1ca9","position":{"x":0,"y":900},"data":{"label":"End service - 2","type":"finishing-step","stepType":"finishing-step-end","readonly":true},"className":"finishing-step","type":"custom","measured":{"width":350,"height":66}},{"id":"d8e31355-b4be-4291-8896-55df5a750ae8","position":{"x":200,"y":720},"data":{"label":"End service - 1","type":"finishing-step","stepType":"finishing-step-end","readonly":true},"className":"finishing-step","type":"custom","measured":{"width":350,"height":66}}],"edges":[{"id":"07dcbb9c-a7eb-4883-894d-edb73ceeed73->2f2058f2-8fcb-4b32-a3b9-5f0002130fcd","source":"07dcbb9c-a7eb-4883-894d-edb73ceeed73","target":"2f2058f2-8fcb-4b32-a3b9-5f0002130fcd","type":"step","label":"+"},{"id":"2f2058f2-8fcb-4b32-a3b9-5f0002130fcd->260f6cbe-b962-4c4c-804e-aa55b8e6ea44","source":"2f2058f2-8fcb-4b32-a3b9-5f0002130fcd","target":"260f6cbe-b962-4c4c-804e-aa55b8e6ea44","type":"step"},{"id":"260f6cbe-b962-4c4c-804e-aa55b8e6ea44->b03b6e57-62e2-4cef-895d-ec0ae18869c2","source":"260f6cbe-b962-4c4c-804e-aa55b8e6ea44","target":"b03b6e57-62e2-4cef-895d-ec0ae18869c2","type":"step"},{"id":"b03b6e57-62e2-4cef-895d-ec0ae18869c2->501f2fd7-f675-486e-a421-a00dc9f8fa24","source":"b03b6e57-62e2-4cef-895d-ec0ae18869c2","target":"501f2fd7-f675-486e-a421-a00dc9f8fa24","type":"step","label":"Success"},{"id":"501f2fd7-f675-486e-a421-a00dc9f8fa24->5dd7ef1b-667b-48c7-832f-158acb9ef5b5","source":"501f2fd7-f675-486e-a421-a00dc9f8fa24","target":"5dd7ef1b-667b-48c7-832f-158acb9ef5b5","type":"step","label":"Jah","selected":false},{"id":"b03b6e57-62e2-4cef-895d-ec0ae18869c2->d8e31355-b4be-4291-8896-55df5a750ae8","source":"b03b6e57-62e2-4cef-895d-ec0ae18869c2","target":"d8e31355-b4be-4291-8896-55df5a750ae8","type":"step","label":"Failure"},{"id":"501f2fd7-f675-486e-a421-a00dc9f8fa24->b1cc8326-0d6f-4646-b180-8642505c1ca9","source":"501f2fd7-f675-486e-a421-a00dc9f8fa24","target":"b1cc8326-0d6f-4646-b180-8642505c1ca9","type":"step","label":"Ei"}]}
+{
+  "nodes": [
+    {
+      "id": "422ff621-53bf-4ea4-b376-87c08c80c7fc",
+      "type": "start",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "data": {
+        "type": "start",
+        "testingPassed": true
+      },
+      "className": "start",
+      "selectable": false,
+      "draggable": false,
+      "measured": {
+        "width": 350,
+        "height": 67
+      }
+    },
+    {
+      "id": "9becfef5-7106-455f-86e2-09398ef3d62a",
+      "position": {
+        "x": 0,
+        "y": 180
+      },
+      "data": {
+        "label": "Assign - 1",
+        "type": "step",
+        "stepType": "assign",
+        "readonly": false,
+        "assignElements": [
+          {
+            "id": "3dff3d85-d688-4b02-9847-4475959adda3",
+            "key": "startDate",
+            "value": "${new Date(new Date().getFullYear(), 0, 1).toISOString().split('T')[0]}"
+          },
+          {
+            "id": "743c6168-8c70-4f14-85f7-7fd743a6275a",
+            "key": "endDate",
+            "value": "${new Date(Date.now() - 86400000).toISOString().split('T')[0]}"
+          }
+        ],
+        "multiChoiceQuestion": {
+          "question": "",
+          "buttons": [
+            {
+              "id": "1",
+              "title": "Jah",
+              "payload": "#service, /POST/services/active/commonNationalHolidaysPrevious_mcq_2_0"
+            },
+            {
+              "id": "2",
+              "title": "Ei",
+              "payload": "#service, /POST/services/active/commonNationalHolidaysPrevious_mcq_2_1"
+            }
+          ]
+        },
+        "dynamicChoices": {
+          "list": "",
+          "serviceName": "",
+          "key": "",
+          "payloadKeys": ""
+        },
+        "endpoint": {
+          "endpointId": "cbb1d8d2-f8f6-4e6d-bbdf-06058b57b8d1",
+          "name": "commonNationalHolidaysAPI",
+          "definitions": [
+            {
+              "id": "7d5943c1-b484-495c-b67b-e4f8f3c22429",
+              "label": "",
+              "methodType": "GET",
+              "type": "custom",
+              "dataType": "custom",
+              "path": "",
+              "supported": true,
+              "isSelected": true,
+              "body": {
+                "variables": [],
+                "rawData": {}
+              },
+              "headers": {
+                "variables": [],
+                "rawData": {}
+              },
+              "params": {
+                "variables": [
+                  {
+                    "id": "5d26631e-76f3-45c6-9d9e-130d6f2f456b",
+                    "name": "countryIsoCode",
+                    "type": "custom",
+                    "required": false,
+                    "value": "EE"
+                  },
+                  {
+                    "id": "7f03d74e-83b3-40d0-ad62-5aeda0febd90",
+                    "name": "validFrom",
+                    "type": "custom",
+                    "required": false,
+                    "value": "${startDate}"
+                  },
+                  {
+                    "id": "93605944-e2ac-43db-9c48-f0b1f1f57f20",
+                    "name": "validTo",
+                    "type": "custom",
+                    "required": false,
+                    "value": "${endDate}"
+                  }
+                ],
+                "rawData": {}
+              },
+              "url": "https://openholidaysapi.org/PublicHolidays?countryIsoCode=EE&validFrom=%24%7BstartDate%7D&validTo=%24%7BendDate%7D"
+            }
+          ],
+          "isNew": false,
+          "type": "custom",
+          "isCommon": true,
+          "serviceId": "cf63be57-9af1-4d2d-9c98-52ecbb01a59b"
+        },
+        "testingPassed": true
+      },
+      "className": "step",
+      "type": "custom",
+      "measured": {
+        "width": 350,
+        "height": 42
+      },
+      "selected": false
+    },
+    {
+      "id": "20023513-533b-45e3-92a5-c5bf91d43c38",
+      "position": {
+        "x": 0,
+        "y": 360
+      },
+      "data": {
+        "label": "commonNationalHolidaysAPI - 2",
+        "type": "step",
+        "stepType": "user-defined",
+        "readonly": false,
+        "endpoint": {
+          "endpointId": "cbb1d8d2-f8f6-4e6d-bbdf-06058b57b8d1",
+          "name": "commonNationalHolidaysAPI",
+          "definitions": [
+            {
+              "id": "7d5943c1-b484-495c-b67b-e4f8f3c22429",
+              "label": "",
+              "methodType": "GET",
+              "type": "custom",
+              "dataType": "custom",
+              "path": "",
+              "supported": true,
+              "isSelected": true,
+              "body": {
+                "variables": [],
+                "rawData": {}
+              },
+              "headers": {
+                "variables": [],
+                "rawData": {}
+              },
+              "params": {
+                "variables": [
+                  {
+                    "id": "5d26631e-76f3-45c6-9d9e-130d6f2f456b",
+                    "name": "countryIsoCode",
+                    "type": "custom",
+                    "required": false,
+                    "value": "EE"
+                  },
+                  {
+                    "id": "7f03d74e-83b3-40d0-ad62-5aeda0febd90",
+                    "name": "validFrom",
+                    "type": "custom",
+                    "required": false,
+                    "value": "${startDate}"
+                  },
+                  {
+                    "id": "93605944-e2ac-43db-9c48-f0b1f1f57f20",
+                    "name": "validTo",
+                    "type": "custom",
+                    "required": false,
+                    "value": "${endDate}"
+                  }
+                ],
+                "rawData": {}
+              },
+              "url": "https://openholidaysapi.org/PublicHolidays?countryIsoCode=EE&validFrom=%24%7BstartDate%7D&validTo=%24%7BendDate%7D"
+            }
+          ],
+          "isNew": false,
+          "type": "custom",
+          "isCommon": true,
+          "serviceId": "cf63be57-9af1-4d2d-9c98-52ecbb01a59b"
+        },
+        "multiChoiceQuestion": {
+          "question": "",
+          "buttons": [
+            {
+              "id": "1",
+              "title": "Jah",
+              "payload": "#service, /POST/services/active/commonNationalHolidaysPrevious_mcq_1_0"
+            },
+            {
+              "id": "2",
+              "title": "Ei",
+              "payload": "#service, /POST/services/active/commonNationalHolidaysPrevious_mcq_1_1"
+            }
+          ]
+        },
+        "dynamicChoices": {
+          "list": "",
+          "serviceName": "",
+          "key": "",
+          "payloadKeys": ""
+        },
+        "testingPassed": true
+      },
+      "className": "step",
+      "type": "custom",
+      "measured": {
+        "width": 350,
+        "height": 42
+      },
+      "selected": false
+    },
+    {
+      "id": "9a5e4b93-833c-43d5-b404-46e96821a6fd",
+      "position": {
+        "x": 0,
+        "y": 540
+      },
+      "data": {
+        "label": "Määra - 1",
+        "type": "step",
+        "stepType": "assign",
+        "readonly": false,
+        "endpoint": {
+          "endpointId": "cbb1d8d2-f8f6-4e6d-bbdf-06058b57b8d1",
+          "name": "commonNationalHolidaysAPI",
+          "definitions": [
+            {
+              "id": "7d5943c1-b484-495c-b67b-e4f8f3c22429",
+              "label": "",
+              "methodType": "GET",
+              "type": "custom",
+              "dataType": "custom",
+              "path": "",
+              "supported": true,
+              "isSelected": true,
+              "body": {
+                "variables": [],
+                "rawData": {}
+              },
+              "headers": {
+                "variables": [],
+                "rawData": {}
+              },
+              "params": {
+                "variables": [
+                  {
+                    "id": "5d26631e-76f3-45c6-9d9e-130d6f2f456b",
+                    "name": "countryIsoCode",
+                    "type": "custom",
+                    "required": false,
+                    "value": "EE"
+                  },
+                  {
+                    "id": "7f03d74e-83b3-40d0-ad62-5aeda0febd90",
+                    "name": "validFrom",
+                    "type": "custom",
+                    "required": false,
+                    "value": "${startDate}"
+                  },
+                  {
+                    "id": "93605944-e2ac-43db-9c48-f0b1f1f57f20",
+                    "name": "validTo",
+                    "type": "custom",
+                    "required": false,
+                    "value": "${endDate}"
+                  }
+                ],
+                "rawData": {}
+              },
+              "url": "https://openholidaysapi.org/PublicHolidays?countryIsoCode=EE&validFrom=%24%7BstartDate%7D&validTo=%24%7BendDate%7D"
+            }
+          ],
+          "isNew": false,
+          "type": "custom",
+          "isCommon": true,
+          "serviceId": "cf63be57-9af1-4d2d-9c98-52ecbb01a59b"
+        },
+        "assignElements": [
+          {
+            "id": "4c7fcaa2-0ac4-49f5-bfd9-1001cc8f0e8b",
+            "key": "responseData",
+            "value": "${commonNationalHolidaysAPI_res.response.body}"
+          },
+          {
+            "id": "94a6b4d7-7683-4ed2-94ab-de3d16a80f22",
+            "key": "last",
+            "value": "${responseData.length - 1}"
+          },
+          {
+            "id": "be759e51-d00c-4d23-bb70-b4f2b227e294",
+            "key": "name",
+            "value": "${responseData[last].name[0].text}"
+          },
+          {
+            "id": "4b7ba758-5b78-4c7e-a178-9cded89c1d8a",
+            "key": "date",
+            "value": "${responseData[last].startDate}"
+          }
+        ],
+        "multiChoiceQuestion": {
+          "question": "",
+          "buttons": [
+            {
+              "id": "1",
+              "title": "Jah",
+              "payload": "#service, /POST/services/active/commonNationalHolidaysPrevious_mcq_1_0"
+            },
+            {
+              "id": "2",
+              "title": "Ei",
+              "payload": "#service, /POST/services/active/commonNationalHolidaysPrevious_mcq_1_1"
+            }
+          ]
+        },
+        "dynamicChoices": {
+          "list": "",
+          "serviceName": "",
+          "key": "",
+          "payloadKeys": ""
+        },
+        "testingPassed": true
+      },
+      "className": "step",
+      "type": "custom",
+      "measured": {
+        "width": 350,
+        "height": 42
+      },
+      "selected": false
+    },
+    {
+      "id": "dbe9c483-9b6b-4ca1-8139-00438f687ce1",
+      "position": {
+        "x": 0,
+        "y": 720
+      },
+      "data": {
+        "label": "Sõnum kliendile - 1",
+        "type": "step",
+        "stepType": "textfield",
+        "readonly": false,
+        "message": "<p>Viimane riigipüha oli ${name}, mida tähistati ${date}.</p>",
+        "multiChoiceQuestion": {
+          "question": "",
+          "buttons": [
+            {
+              "id": "1",
+              "title": "Jah",
+              "payload": "#service, /POST/services/active/commonNationalHolidaysPrevious_mcq_1_0"
+            },
+            {
+              "id": "2",
+              "title": "Ei",
+              "payload": "#service, /POST/services/active/commonNationalHolidaysPrevious_mcq_1_1"
+            }
+          ]
+        },
+        "dynamicChoices": {
+          "list": "",
+          "serviceName": "",
+          "key": "",
+          "payloadKeys": ""
+        },
+        "testingPassed": true,
+        "endpoint": {
+          "endpointId": "cbb1d8d2-f8f6-4e6d-bbdf-06058b57b8d1",
+          "name": "commonNationalHolidaysAPI",
+          "definitions": [
+            {
+              "id": "7d5943c1-b484-495c-b67b-e4f8f3c22429",
+              "label": "",
+              "methodType": "GET",
+              "type": "custom",
+              "dataType": "custom",
+              "path": "",
+              "supported": true,
+              "isSelected": true,
+              "body": {
+                "variables": [],
+                "rawData": {}
+              },
+              "headers": {
+                "variables": [],
+                "rawData": {}
+              },
+              "params": {
+                "variables": [
+                  {
+                    "id": "5d26631e-76f3-45c6-9d9e-130d6f2f456b",
+                    "name": "countryIsoCode",
+                    "type": "custom",
+                    "required": false,
+                    "value": "EE"
+                  },
+                  {
+                    "id": "7f03d74e-83b3-40d0-ad62-5aeda0febd90",
+                    "name": "validFrom",
+                    "type": "custom",
+                    "required": false,
+                    "value": "${startDate}"
+                  },
+                  {
+                    "id": "93605944-e2ac-43db-9c48-f0b1f1f57f20",
+                    "name": "validTo",
+                    "type": "custom",
+                    "required": false,
+                    "value": "${endDate}"
+                  }
+                ],
+                "rawData": {}
+              },
+              "url": "https://openholidaysapi.org/PublicHolidays?countryIsoCode=EE&validFrom=%24%7BstartDate%7D&validTo=%24%7BendDate%7D"
+            }
+          ],
+          "isNew": false,
+          "type": "custom",
+          "isCommon": true,
+          "serviceId": "cf63be57-9af1-4d2d-9c98-52ecbb01a59b"
+        }
+      },
+      "className": "step",
+      "type": "custom",
+      "measured": {
+        "width": 350,
+        "height": 66
+      },
+      "selected": false
+    },
+    {
+      "id": "53c3c83c-060b-4220-aa25-1f615a510faa",
+      "position": {
+        "x": 0,
+        "y": 900
+      },
+      "data": {
+        "label": "End service - 1",
+        "type": "finishing-step",
+        "stepType": "finishing-step-end",
+        "readonly": true,
+        "testingPassed": true
+      },
+      "className": "finishing-step",
+      "type": "custom",
+      "measured": {
+        "width": 350,
+        "height": 66
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "422ff621-53bf-4ea4-b376-87c08c80c7fc->9becfef5-7106-455f-86e2-09398ef3d62a",
+      "source": "422ff621-53bf-4ea4-b376-87c08c80c7fc",
+      "target": "9becfef5-7106-455f-86e2-09398ef3d62a",
+      "type": "step"
+    },
+    {
+      "id": "9becfef5-7106-455f-86e2-09398ef3d62a->20023513-533b-45e3-92a5-c5bf91d43c38",
+      "source": "9becfef5-7106-455f-86e2-09398ef3d62a",
+      "target": "20023513-533b-45e3-92a5-c5bf91d43c38",
+      "type": "step",
+      "animated": false,
+      "deletable": true,
+      "label": "+"
+    },
+    {
+      "id": "dbe9c483-9b6b-4ca1-8139-00438f687ce1->53c3c83c-060b-4220-aa25-1f615a510faa",
+      "source": "dbe9c483-9b6b-4ca1-8139-00438f687ce1",
+      "target": "53c3c83c-060b-4220-aa25-1f615a510faa",
+      "type": "step",
+      "animated": false,
+      "deletable": true
+    },
+    {
+      "id": "20023513-533b-45e3-92a5-c5bf91d43c38->9a5e4b93-833c-43d5-b404-46e96821a6fd",
+      "source": "20023513-533b-45e3-92a5-c5bf91d43c38",
+      "target": "9a5e4b93-833c-43d5-b404-46e96821a6fd",
+      "type": "step",
+      "label": "+"
+    },
+    {
+      "id": "9a5e4b93-833c-43d5-b404-46e96821a6fd->dbe9c483-9b6b-4ca1-8139-00438f687ce1",
+      "source": "9a5e4b93-833c-43d5-b404-46e96821a6fd",
+      "target": "dbe9c483-9b6b-4ca1-8139-00438f687ce1",
+      "type": "step",
+      "animated": false,
+      "deletable": true
+    }
+  ]
+}
