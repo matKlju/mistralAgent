@@ -1,4 +1,10 @@
-"""Convenience abstractions for interacting with Mistral via LangChain."""
+"""Convenience abstractions for interacting with Mistral via LangChain.
+
+Features
+- Loads Mistral credentials from environment variables or overrides.
+- Builds a reusable prompt template with configurable system prompt.
+- Provides a simple `.run()` API that injects optional context blocks.
+"""
 
 from __future__ import annotations
 
@@ -6,23 +12,20 @@ import os
 from typing import Optional
 
 from dotenv import load_dotenv
-from langchain_community.chat_models import ChatMistralAI
+from langchain_mistralai import ChatMistralAI
 from langchain_core.output_parsers import StrOutputParser
-from langchain_core.prompts import ChatPromptTemplate
+
+from .constants import DEFAULT_SYSTEM_PROMPT
+from .prompt_utils import build_prompt_template, format_context
 
 # Load environment variables early so the API key is discoverable.
 load_dotenv()
 
 DEFAULT_MODEL = "codestral-2501"
-DEFAULT_SYSTEM_PROMPT = (
-    "You are a helpful AI assistant that provides concise, relevant answers. "
-    "Use the supplied context when it is available, and otherwise rely on your "
-    "general knowledge."
-)
 
 
 class MistralAgent:
-    """Lightweight wrapper around the LangChain Mistral chat model."""
+    """LangChain chat wrapper that manages prompts, model, and execution."""
 
     def __init__(
         self,
@@ -40,24 +43,12 @@ class MistralAgent:
 
         self._system_prompt = system_prompt
         self._model = ChatMistralAI(model=model, mistral_api_key=self._api_key)
-        self._prompt = ChatPromptTemplate.from_messages(
-            [
-                ("system", "{system_prompt}"),
-                (
-                    "human",
-                    "{context_block}\n\n" "User question:\n{question}",
-                ),
-            ]
-        )
+        self._prompt = build_prompt_template()
         self._chain = self._prompt | self._model | StrOutputParser()
 
     def run(self, question: str, *, context: Optional[str] = None) -> str:
         """Send a prompt to the agent and return the text response."""
-        context_block = (
-            f"Context provided:\n{context.strip()}"
-            if context and context.strip()
-            else "No additional context provided."
-        )
+        context_block = format_context(context)
         return self._chain.invoke(
             {
                 "system_prompt": self._system_prompt,

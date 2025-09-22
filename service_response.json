@@ -1,0 +1,313 @@
+{
+  "nodes": [
+    {
+      "id": "07dcbb9c-a7eb-4883-894d-edb73ceeed73",
+      "type": "start",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "data": {
+        "type": "start"
+      },
+      "className": "start",
+      "selectable": false,
+      "draggable": false,
+      "measured": {
+        "width": 350,
+        "height": 67
+      }
+    },
+    {
+      "id": "2f2058f2-8fcb-4b32-a3b9-5f0002130fcd",
+      "position": {
+        "x": 0,
+        "y": 180
+      },
+      "data": {
+        "label": "Assign - 1",
+        "type": "step",
+        "stepType": "assign",
+        "readonly": false,
+        "assignElements": [
+          {
+            "id": "ed664dde-237f-4dee-a8d2-41c922656aac",
+            "key": "currentYear",
+            "value": "${new Date().getFullYear()}"
+          }
+        ],
+        "multiChoiceQuestion": {
+          "question": "",
+          "buttons": [
+            {
+              "id": "1",
+              "title": "Jah",
+              "payload": "#service, /POST/services/active/test2_mcq_undefined_0"
+            },
+            {
+              "id": "2",
+              "title": "Ei",
+              "payload": "#service, /POST/services/active/test2_mcq_undefined_1"
+            }
+          ]
+        },
+        "dynamicChoices": {
+          "list": "",
+          "serviceName": "",
+          "key": "",
+          "payloadKeys": ""
+        }
+      },
+      "className": "step",
+      "type": "custom",
+      "measured": {
+        "width": 350,
+        "height": 42
+      },
+      "selected": false
+    },
+    {
+      "id": "260f6cbe-b962-4c4c-804e-aa55b8e6ea44",
+      "position": {
+        "x": 0,
+        "y": 360
+      },
+      "data": {
+        "label": "Send message to client - 1",
+        "type": "step",
+        "stepType": "textfield",
+        "readonly": false,
+        "message": "<p>Fetching national holidays for Estonia in ${currentYear}</p>",
+        "multiChoiceQuestion": {
+          "question": "",
+          "buttons": [
+            {
+              "id": "1",
+              "title": "Jah",
+              "payload": "#service, /POST/services/active/test2_mcq_1_0"
+            },
+            {
+              "id": "2",
+              "title": "Ei",
+              "payload": "#service, /POST/services/active/test2_mcq_1_1"
+            }
+          ]
+        },
+        "dynamicChoices": {
+          "list": "",
+          "serviceName": "",
+          "key": "",
+          "payloadKeys": ""
+        }
+      },
+      "className": "step",
+      "type": "custom",
+      "measured": {
+        "width": 350,
+        "height": 66
+      },
+      "selected": false
+    },
+    {
+      "id": "b03b6e57-62e2-4cef-895d-ec0ae18869c2",
+      "position": {
+        "x": 0,
+        "y": 540
+      },
+      "data": {
+        "label": "Condition - 1",
+        "type": "step",
+        "stepType": "condition",
+        "readonly": false,
+        "rules": {
+          "id": "40577d69-caf9-4598-8c36-cca149f0af17",
+          "children": [
+            {
+              "id": "62c89233-0d0d-4fb6-b772-055b012662b1",
+              "field": "currentYear",
+              "operator": "===",
+              "value": "${new Date().getFullYear()}"
+            }
+          ],
+          "type": "and",
+          "not": false
+        },
+        "multiChoiceQuestion": {
+          "question": "",
+          "buttons": [
+            {
+              "id": "1",
+              "title": "Jah",
+              "payload": "#service, /POST/services/active/test2_mcq_1_0"
+            },
+            {
+              "id": "2",
+              "title": "Ei",
+              "payload": "#service, /POST/services/active/test2_mcq_1_1"
+            }
+          ]
+        },
+        "dynamicChoices": {
+          "list": "",
+          "serviceName": "",
+          "key": "",
+          "payloadKeys": ""
+        }
+      },
+      "className": "step",
+      "type": "custom",
+      "measured": {
+        "width": 350,
+        "height": 42
+      },
+      "selected": false
+    },
+    {
+      "id": "501f2fd7-f675-486e-a421-a00dc9f8fa24",
+      "position": {
+        "x": -200,
+        "y": 720
+      },
+      "data": {
+        "label": "Multi-choice question - 1",
+        "type": "step",
+        "stepType": "multi-choice-question",
+        "readonly": false,
+        "multiChoiceQuestion": {
+          "question": "Do you want to fetch holidays for another year?",
+          "buttons": [
+            {
+              "id": "1",
+              "title": "Yes",
+              "payload": "#service, /POST/services/active/test2_mcq_1_0"
+            },
+            {
+              "id": "2",
+              "title": "No",
+              "payload": "#service, /POST/services/active/test2_mcq_1_1"
+            }
+          ]
+        },
+        "dynamicChoices": {
+          "list": "",
+          "serviceName": "",
+          "key": "",
+          "payloadKeys": ""
+        }
+      },
+      "className": "step",
+      "type": "custom",
+      "measured": {
+        "width": 350,
+        "height": 66
+      }
+    },
+    {
+      "id": "5dd7ef1b-667b-48c7-832f-158acb9ef5b5",
+      "position": {
+        "x": -400,
+        "y": 900
+      },
+      "data": {
+        "label": "Dynamic Choices - 1",
+        "type": "finishing-step",
+        "stepType": "dynamic-choices",
+        "readonly": false
+      },
+      "className": "dynamic-choices",
+      "type": "custom",
+      "measured": {
+        "width": 350,
+        "height": 42
+      }
+    },
+    {
+      "id": "b1cc8326-0d6f-4646-b180-8642505c1ca9",
+      "position": {
+        "x": 0,
+        "y": 900
+      },
+      "data": {
+        "label": "End service - 2",
+        "type": "finishing-step",
+        "stepType": "finishing-step-end",
+        "readonly": true
+      },
+      "className": "finishing-step",
+      "type": "custom",
+      "measured": {
+        "width": 350,
+        "height": 66
+      }
+    },
+    {
+      "id": "d8e31355-b4be-4291-8896-55df5a750ae8",
+      "position": {
+        "x": 200,
+        "y": 720
+      },
+      "data": {
+        "label": "End service - 1",
+        "type": "finishing-step",
+        "stepType": "finishing-step-end",
+        "readonly": true
+      },
+      "className": "finishing-step",
+      "type": "custom",
+      "measured": {
+        "width": 350,
+        "height": 66
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "07dcbb9c-a7eb-4883-894d-edb73ceeed73->2f2058f2-8fcb-4b32-a3b9-5f0002130fcd",
+      "source": "07dcbb9c-a7eb-4883-894d-edb73ceeed73",
+      "target": "2f2058f2-8fcb-4b32-a3b9-5f0002130fcd",
+      "type": "step",
+      "label": "+"
+    },
+    {
+      "id": "2f2058f2-8fcb-4b32-a3b9-5f0002130fcd->260f6cbe-b962-4c4c-804e-aa55b8e6ea44",
+      "source": "2f2058f2-8fcb-4b32-a3b9-5f0002130fcd",
+      "target": "260f6cbe-b962-4c4c-804e-aa55b8e6ea44",
+      "type": "step"
+    },
+    {
+      "id": "260f6cbe-b962-4c4c-804e-aa55b8e6ea44->b03b6e57-62e2-4cef-895d-ec0ae18869c2",
+      "source": "260f6cbe-b962-4c4c-804e-aa55b8e6ea44",
+      "target": "b03b6e57-62e2-4cef-895d-ec0ae18869c2",
+      "type": "step"
+    },
+    {
+      "id": "b03b6e57-62e2-4cef-895d-ec0ae18869c2->501f2fd7-f675-486e-a421-a00dc9f8fa24",
+      "source": "b03b6e57-62e2-4cef-895d-ec0ae18869c2",
+      "target": "501f2fd7-f675-486e-a421-a00dc9f8fa24",
+      "type": "step",
+      "label": "Success"
+    },
+    {
+      "id": "501f2fd7-f675-486e-a421-a00dc9f8fa24->5dd7ef1b-667b-48c7-832f-158acb9ef5b5",
+      "source": "501f2fd7-f675-486e-a421-a00dc9f8fa24",
+      "target": "5dd7ef1b-667b-48c7-832f-158acb9ef5b5",
+      "type": "step",
+      "label": "Yes",
+      "selected": false
+    },
+    {
+      "id": "b03b6e57-62e2-4cef-895d-ec0ae18869c2->d8e31355-b4be-4291-8896-55df5a750ae8",
+      "source": "b03b6e57-62e2-4cef-895d-ec0ae18869c2",
+      "target": "d8e31355-b4be-4291-8896-55df5a750ae8",
+      "type": "step",
+      "label": "Failure"
+    },
+    {
+      "id": "501f2fd7-f675-486e-a421-a00dc9f8fa24->b1cc8326-0d6f-4646-b180-8642505c1ca9",
+      "source": "501f2fd7-f675-486e-a421-a00dc9f8fa24",
+      "target": "b1cc8326-0d6f-4646-b180-8642505c1ca9",
+      "type": "step",
+      "label": "No"
+    }
+  ]
+}
