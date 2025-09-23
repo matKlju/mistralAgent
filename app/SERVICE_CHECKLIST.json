@@ -1,0 +1,50 @@
+{
+  "required": {
+    "nodes": [
+      "start",
+      "finishing-step-end"
+    ],
+    "edges": true,
+    "uuid_ids": true
+  },
+  "ordering": [
+    "start",
+    "assign",
+    "condition?",
+    "user-defined?",
+    "assign",
+    "textfield",
+    "finishing-step-end"
+  ],
+  "rules": [
+    {
+      "id": "uuid-nodes",
+      "description": "Every node and edge must use a UUID-formatted id.",
+      "severity": "error"
+    },
+    {
+      "id": "assign-context",
+      "description": "Introduce variables with assign steps before referencing them in endpoints or messages.",
+      "severity": "error"
+    },
+    {
+      "id": "condition-labels",
+      "description": "Provide explicit labels on edges leaving condition nodes.",
+      "severity": "warning"
+    },
+    {
+      "id": "endpoint-optional",
+      "description": "Endpoint steps are optional; include only when external data is required.",
+      "severity": "info"
+    },
+    {
+      "id": "message-last",
+      "description": "Client-facing textfield steps should appear after data preparation is complete.",
+      "severity": "error"
+    }
+  ],
+  "output": {
+    "format": "json",
+    "notes": "Return a single JSON object representing the service graph."
+  }
+}

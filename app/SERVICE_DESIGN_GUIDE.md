@@ -28,6 +28,10 @@ start → assign variables → [optional endpoint call] → transform/prepare ou
 - **Finish (`stepType": "finishing-step-end"`)**
   - Read-only node marking the end of the workflow.
 
+### Example Reference Services
+- **National holidays lookup** (`app/examples/test_context.json`): demonstrates a linear flow that fetches an external API, transforms the response, and produces a localized summary.
+- **Support triage with branching** (`app/examples/sample_service_branching.json`): showcases a condition node that splits urgent versus standard handling, including an optional knowledge-base API call and tailored messaging per branch.
+
 ## 3. Edge Ordering
 - Edges connect nodes sequentially; each edge’s `source` and `target` must map to node UUIDs.
 - Success paths should be labelled `"+"` when there is no branching.
@@ -75,3 +79,6 @@ When generating a new service:
 5. **Validate the graph**: all nodes reachable from start, edges wired with UUIDs, and finish node present.
 
 Keep this guide close to the system prompt so the model internalises structure and can adapt it to new domains while staying compliant with the service framework.
+
+## 11. Checklist Alignment
+The structured checklist in `app/SERVICE_CHECKLIST.json` formalises non-negotiable rules (UUID usage, node ordering, edge labelling, message placement). Verify that every generated service complies before returning the final JSON.

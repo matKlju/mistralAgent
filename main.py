@@ -4,7 +4,6 @@ from __future__ import annotations
 
 import json
 import uuid
-from pathlib import Path
 
 from app import create_agent
 from app.constants import DEFAULT_OUTPUT_PATH, DEFAULT_SAMPLE_QUESTION

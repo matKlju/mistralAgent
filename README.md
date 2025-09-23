@@ -4,8 +4,8 @@ A streamlined project for generating service definitions with Mistral and LangCh
 
 ## Features
 - Preconfigured `MistralAgent` wrapper (`app/agent.py`) that loads environment secrets via `python-dotenv`.
-- Service design guide (`app/SERVICE_DESIGN_GUIDE.md`) distilled from example workflows to keep generations consistent.
-- Default context and sample question (`app/test_context.json`, `app/constants.py`) demonstrating a complete start→finish service.
+- Service design guide (`app/SERVICE_DESIGN_GUIDE.md`) distilled from example workflows, plus a machine-readable checklist (`app/SERVICE_CHECKLIST.json`).
+- Default contexts and sample question (`app/examples/test_context.json`, `app/examples/sample_service_branching.json`, `app/constants.py`) showcasing linear and branching services.
 - Automated UUID regeneration and code-fence stripping to keep saved JSON responses clean (`main.py`).
 
 ## Getting Started
@@ -28,21 +28,22 @@ A streamlined project for generating service definitions with Mistral and LangCh
 All configuration is file-driven. Update the following as needed:
 - **System prompt & defaults**: `app/constants.py`
 - **Design guide**: `app/SERVICE_DESIGN_GUIDE.md`
-- **Example context**: `app/test_context.json`
+- **Checklist**: `app/SERVICE_CHECKLIST.json`
+- **Example contexts**: files under `app/examples/` (e.g., `test_context.json`, `sample_service_branching.json`, and the `common*` flows)
 
 Then run:
 ```bash
 python main.py
 ```
 This will:
-1. Load the design guide and example context.
+1. Load the design guide, checklist, and bundled example contexts.
 2. Ask the default sample question (also defined in `app/constants.py`).
 3. Generate a service JSON response, strip Markdown fences, refresh UUIDs, and save the result to `service_response.json`.
 4. Print the normalized JSON to stdout.
 
 ## Customising Generation
 - **Change the sample prompt**: edit `DEFAULT_SAMPLE_QUESTION` in `app/constants.py`.
-- **Swap or edit context**: modify `app/test_context.json` and/or the guide.
+- **Swap or edit context**: update JSON files under `app/examples/` and/or the guide.
 - **Use a different output file**: update `DEFAULT_OUTPUT_PATH` in `app/constants.py`.
 - **Extend helper logic**: adjust `app/prompt_utils.py` or `main.py` if you need additional preprocessing.
 
