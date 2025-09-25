@@ -8,6 +8,24 @@ A streamlined project for generating service definitions with Mistral and LangCh
 - Default contexts and sample question (`app/examples/test_context.json`, `app/examples/sample_service_branching.json`, `app/constants.py`) showcasing linear and branching services.
 - Automated UUID regeneration and code-fence stripping to keep saved JSON responses clean (`main.py`).
 
+## Quick Demo
+1. **Inputs**
+   - System prompt & defaults (`app/constants.py`).
+   - Service design guide and checklist (`app/SERVICE_DESIGN_GUIDE.md`, `app/SERVICE_CHECKLIST.json`).
+   - Example service JSONs (`app/examples/*.json`).
+2. **Run**
+   ```bash
+   python main.py
+   ```
+   The script creates the agent, loads the guide plus all examples, and submits the default sample question.
+3. **Output**
+   - Normalised JSON service definition written to `service_response.json` and echoed to stdout. All node IDs and assign-element IDs are regenerated, ready for import into workflow tooling.
+
+Key components in action:
+- `app/agent.py`: wraps the LangChain Mistral chat model.
+- `app/prompt_utils.py`: merges guide, checklist, and example contexts into a single prompt.
+- `main.py`: orchestrates the request and post-processing for the demo.
+
 ## Getting Started
 1. **Create a virtual environment**
    ```bash
