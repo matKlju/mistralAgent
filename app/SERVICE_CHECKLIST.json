@@ -28,9 +28,29 @@
       "severity": "error"
     },
     {
+      "id": "no-unused-assigns",
+      "description": "Every variable created in an assign step must be referenced by a later node (endpoint params, conditions, transforms, or messages); remove unused values.",
+      "severity": "error"
+    },
+    {
+      "id": "no-nested-placeholders",
+      "description": "Avoid nesting `${...}` inside other placeholders; use literal variable names when indexing (e.g., `${data.items[indexVar]}` instead of `${data.items[${indexVar}]}`).",
+      "severity": "error"
+    },
+    {
+      "id": "condition-operator-js",
+      "description": "Condition rules may only use standard JavaScript comparison operators (`==`, `===`, `!=`, `!==`, `>`, `<`, `>=`, `<=`). Compute any other logic in an earlier assign step and reference the resulting variable.",
+      "severity": "error"
+    },
+    {
       "id": "condition-labels",
       "description": "Provide explicit labels on edges leaving condition nodes.",
       "severity": "warning"
+    },
+    {
+      "id": "endpoint-response-alias",
+      "description": "Reference endpoint responses using `${<endpointName>_res...}` where `<endpointName>` matches the `endpoint.name`; do not invent custom aliases.",
+      "severity": "error"
     },
     {
       "id": "endpoint-optional",

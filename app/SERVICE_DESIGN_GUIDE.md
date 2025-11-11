@@ -39,9 +39,12 @@ start → assign variables → [optional endpoint call] → transform/prepare ou
 
 ## 4. Variable Conventions
 - Variables are established via `assignElements` and referenced using `${variableName}` syntax.
+- Avoid nesting `${…}` inside other placeholders; when indexing into objects or arrays, keep the inner identifier bare (e.g., `${response.body.items[indexVar]}`).
 - Keep variable names descriptive (`startDate`, `responseData`, `last`).
 - When computing derived values, store intermediate results to avoid re-computation.
+- Only introduce variables that will be consumed by later steps (endpoints, conditions, transforms, or messages); remove dead assignments.
 - API parameters should reference previously assigned variables.
+- When branching logic depends on complex checks (e.g., verifying object keys), perform the JavaScript expression inside an assign step and store the boolean result for later use.
 
 ## 5. Endpoint Definitions
 - Each endpoint includes:
@@ -50,6 +53,7 @@ start → assign variables → [optional endpoint call] → transform/prepare ou
   - `serviceId` referencing the backend service if available.
 - Parameters in `definitions[].params.variables` may use literal values or `${variable}` references.
 - Mark the active definition with `isSelected = true`.
+- Downstream references to endpoint responses must use the pattern `${<endpointName>_res.response...}` where `<endpointName>` matches the `endpoint.name` (after stripping spaces/punctuation and converting to camelCase or snake_case once); do not invent custom aliases.
 
 ## 6. Client Messaging
 - Final messaging steps interpolate computed variables to produce human-readable responses.
@@ -67,6 +71,7 @@ start → assign variables → [optional endpoint call] → transform/prepare ou
 
 ## 9. Extending Beyond Linear Flows
 - To implement branching, insert condition nodes (`stepType": "condition"`) with rule sets in `data.rules`.
+- Condition rules only support standard JavaScript comparison operators (`==`, `===`, `!=`, `!==`, `>`, `<`, `>=`, `<=`). Derive any other checks beforehand (see Variable Conventions) and reference the resulting boolean variable in the rule.
 - Ensure each branch ultimately reconnects or terminates with a finishing-step.
 - Provide clear edge labels for each branch outcome.
 

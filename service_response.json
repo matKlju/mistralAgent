@@ -1,7 +1,7 @@
 {
   "nodes": [
     {
-      "id": "e712984c-af7a-4ff3-8fe3-107abd08a491",
+      "id": "52f640e2-8a38-419a-a0a6-61ece2cfae6c",
       "type": "start",
       "position": {
         "x": 0,
@@ -20,26 +20,21 @@
       }
     },
     {
-      "id": "1dd404ad-e13c-4dd5-88ae-78d745d27677",
+      "id": "f6e82236-b008-4e32-8b33-8d8e02174ec3",
       "position": {
         "x": 0,
         "y": 180
       },
       "data": {
-        "label": "Assign Dates",
+        "label": "Assign - 1",
         "type": "step",
         "stepType": "assign",
         "readonly": false,
         "assignElements": [
           {
-            "id": "437454b5-d2e4-423d-ae36-c7905cfe6488",
-            "key": "startDate",
-            "value": "${new Date(new Date().getFullYear(), 0, 1).toISOString().split('T')[0]}"
-          },
-          {
-            "id": "fe2e15c6-8b7d-4485-9657-e88ba2deafbd",
-            "key": "endDate",
-            "value": "${new Date(new Date().getFullYear(), 11, 31).toISOString().split('T')[0]}"
+            "id": "eccfb285-90c6-4efc-a34a-265107f63ade",
+            "key": "today",
+            "value": "${new Date().toISOString().split('T')[0]}"
           }
         ],
         "testingPassed": true
@@ -53,22 +48,22 @@
       "selected": false
     },
     {
-      "id": "60425155-c570-4b34-9770-83bc9f30c55b",
+      "id": "29a661ac-98c3-4aad-954c-23459e722a91",
       "position": {
         "x": 0,
         "y": 360
       },
       "data": {
-        "label": "Fetch National Holidays",
+        "label": "commonElectricityAPI - 1",
         "type": "step",
         "stepType": "user-defined",
         "readonly": false,
         "endpoint": {
-          "endpointId": "fetch-holidays-endpoint",
-          "name": "fetchNationalHolidaysAPI",
+          "endpointId": "electricity-api-endpoint",
+          "name": "commonElectricityAPI",
           "definitions": [
             {
-              "id": "fetch-holidays-definition",
+              "id": "electricity-api-definition",
               "label": "",
               "methodType": "GET",
               "type": "custom",
@@ -85,38 +80,16 @@
                 "rawData": {}
               },
               "params": {
-                "variables": [
-                  {
-                    "id": "country-iso-code",
-                    "name": "countryIsoCode",
-                    "type": "custom",
-                    "required": false,
-                    "value": "EE"
-                  },
-                  {
-                    "id": "valid-from",
-                    "name": "validFrom",
-                    "type": "custom",
-                    "required": false,
-                    "value": "${startDate}"
-                  },
-                  {
-                    "id": "valid-to",
-                    "name": "validTo",
-                    "type": "custom",
-                    "required": false,
-                    "value": "${endDate}"
-                  }
-                ],
+                "variables": [],
                 "rawData": {}
               },
-              "url": "https://openholidaysapi.org/PublicHolidays?countryIsoCode=EE&validFrom=%24%7BstartDate%7D&validTo=%24%7BendDate%7D"
+              "url": "https://dashboard.elering.ee/api/nps/price/EE/current"
             }
           ],
           "isNew": false,
           "type": "custom",
           "isCommon": true,
-          "serviceId": "fetch-holidays-service"
+          "serviceId": "electricity-service-id"
         },
         "testingPassed": true
       },
@@ -129,21 +102,21 @@
       "selected": false
     },
     {
-      "id": "a635cb9b-96a9-4423-b9f5-2e201e5d952e",
+      "id": "89379335-091f-4c77-ae3b-6f07c2e591c3",
       "position": {
         "x": 0,
         "y": 540
       },
       "data": {
-        "label": "Assign Response Data",
+        "label": "Assign - 2",
         "type": "step",
         "stepType": "assign",
         "readonly": false,
         "assignElements": [
           {
-            "id": "55658486-2e7b-4850-a874-556b0db1d619",
-            "key": "responseData",
-            "value": "${fetchNationalHolidaysAPI_res.response.body}"
+            "id": "e25f0a21-d811-4e6b-9448-c797158fd564",
+            "key": "price",
+            "value": "${Math.min(...commonElectricityAPI_res.response.body.data.map(item => item.price))}"
           }
         ],
         "testingPassed": true
@@ -157,17 +130,17 @@
       "selected": false
     },
     {
-      "id": "79331614-4741-4a99-aca0-3d7189d71579",
+      "id": "03edfef7-6302-4a02-b7d7-448d3c8472a9",
       "position": {
         "x": 0,
         "y": 720
       },
       "data": {
-        "label": "Send Message to Client",
+        "label": "Send message to client - 1",
         "type": "step",
         "stepType": "textfield",
         "readonly": false,
-        "message": "<p>Current national holidays for Estonia in ${new Date().getFullYear()} are: ${responseData.map(holiday => holiday.name[0].text).join(', ')}.</p>",
+        "message": "<p>Kõige odavam elektrihind tänase päeva jooksul on ${price} senti/kWh.</p>",
         "testingPassed": true
       },
       "className": "step",
@@ -179,13 +152,13 @@
       "selected": false
     },
     {
-      "id": "ee98baa3-3758-4f6f-81cd-89f124784df9",
+      "id": "26f757f3-3533-45de-a71a-4b755499343d",
       "position": {
         "x": 0,
         "y": 900
       },
       "data": {
-        "label": "End Service",
+        "label": "End service - 1",
         "type": "finishing-step",
         "stepType": "finishing-step-end",
         "readonly": true,
@@ -201,34 +174,39 @@
   ],
   "edges": [
     {
-      "id": "start->assign-dates",
-      "source": "e712984c-af7a-4ff3-8fe3-107abd08a491",
-      "target": "1dd404ad-e13c-4dd5-88ae-78d745d27677",
-      "type": "step"
+      "id": "start-to-assign-init",
+      "source": "52f640e2-8a38-419a-a0a6-61ece2cfae6c",
+      "target": "f6e82236-b008-4e32-8b33-8d8e02174ec3",
+      "type": "step",
+      "label": "+"
     },
     {
-      "id": "assign-dates->fetch-holidays",
-      "source": "1dd404ad-e13c-4dd5-88ae-78d745d27677",
-      "target": "60425155-c570-4b34-9770-83bc9f30c55b",
-      "type": "step"
+      "id": "assign-init-to-electricity-api",
+      "source": "f6e82236-b008-4e32-8b33-8d8e02174ec3",
+      "target": "29a661ac-98c3-4aad-954c-23459e722a91",
+      "type": "step",
+      "label": "+"
     },
     {
-      "id": "fetch-holidays->assign-response",
-      "source": "60425155-c570-4b34-9770-83bc9f30c55b",
-      "target": "a635cb9b-96a9-4423-b9f5-2e201e5d952e",
-      "type": "step"
+      "id": "electricity-api-to-assign-transform",
+      "source": "29a661ac-98c3-4aad-954c-23459e722a91",
+      "target": "89379335-091f-4c77-ae3b-6f07c2e591c3",
+      "type": "step",
+      "label": "+"
     },
     {
-      "id": "assign-response->send-message",
-      "source": "a635cb9b-96a9-4423-b9f5-2e201e5d952e",
-      "target": "79331614-4741-4a99-aca0-3d7189d71579",
-      "type": "step"
+      "id": "assign-transform-to-message-client",
+      "source": "89379335-091f-4c77-ae3b-6f07c2e591c3",
+      "target": "03edfef7-6302-4a02-b7d7-448d3c8472a9",
+      "type": "step",
+      "label": "+"
     },
     {
-      "id": "send-message->end-service",
-      "source": "79331614-4741-4a99-aca0-3d7189d71579",
-      "target": "ee98baa3-3758-4f6f-81cd-89f124784df9",
-      "type": "step"
+      "id": "message-client-to-finish",
+      "source": "03edfef7-6302-4a02-b7d7-448d3c8472a9",
+      "target": "26f757f3-3533-45de-a71a-4b755499343d",
+      "type": "step",
+      "label": "+"
     }
   ]
 }
