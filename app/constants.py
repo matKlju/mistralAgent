@@ -35,21 +35,37 @@ try:
 except OSError:
     SERVICE_CHECKLIST = "{}"
 
+
+# NATIONAL HOLIDAYS
 # National holidays ALL - OK
 #DEFAULT_SAMPLE_QUESTION = "Create a service that returns current national holidays of the current year, for Estonia. Use this API-t: https://openholidaysapi.org/swagger/v1/swagger.json"
 #DEFAULT_SAMPLE_QUESTION = "Loo teenus, mis kõik käesoleva aasta Eesti riigipühad. Kasuta seda API-t: https://openholidaysapi.org/swagger/v1/swagger.json"
 
 # National holidays YTD - OK
 #DEFAULT_SAMPLE_QUESTION = "Create a service that returns the current national holidays of the current year, for Estonia, from start of the year to the current day. Use this api : https://openholidaysapi.org/swagger/v1/swagger.json"
-DEFAULT_SAMPLE_QUESTION = "Loo teenus, mis tagastab käesoleva aasta Eesti riigipühad aasta algusest kuni tänase kuupäevani. Kasuta seda API-t: https://openholidaysapi.org/swagger/v1/swagger.json"
+#DEFAULT_SAMPLE_QUESTION = "Loo teenus, mis tagastab käesoleva aasta Eesti riigipühad aasta algusest kuni tänase kuupäevani. Kasuta seda API-t: https://openholidaysapi.org/swagger/v1/swagger.json"
 
 # National holidays EOY - OK
 #DEFAULT_SAMPLE_QUESTION = "Create a service that returns the national holidays of Estonia from current day to the end of the year. Use this api : https://openholidaysapi.org/swagger/v1/swagger.json"
 #DEFAULT_SAMPLE_QUESTION = "Loo teenus, mis tagastab Eesti riigipühad käesoleva aasta tänasest päevast aasta lõpuni. Kasuta seda API-t: https://openholidaysapi.org/swagger/v1/swagger.json"
 
-#DEFAULT_SAMPLE_QUESTION = "Create a service that Provides information for 5 most recent active initiatives. Use this api example : https://rahvaalgatus.ee/initiatives?for=parliament&phase=sign&signedSince=2020-01-01&order=-signatureCount&signingEndsAt=2015-06-18T13%3A37%3A42Z&limit=5"
-#DEFAULT_SAMPLE_QUESTION = "Create a service that Provides information for 5 most recent active initiatives. Use this api example : https://rahvaalgatus.ee/initiatives?for=parliament&phase=sign&signedSince=2020-01-01&order=-signatureCount&signingEndsAt=2015-06-18T13%3A37%3A42Z&limit=5"
+# National holidays NEXT - OK
+#DEFAULT_SAMPLE_QUESTION = "Create a service that returns the next upcoming national holiday in Estonia. Use this api : https://openholidaysapi.org/swagger/v1/swagger.json"
+#DEFAULT_SAMPLE_QUESTION = "Loo teenus, mis tagastab järgmise Eesti riigipüha. Kasuta seda API-t: https://openholidaysapi.org/swagger/v1/swagger.json"
 
+# National holidays PREVIOUS - OK
+#DEFAULT_SAMPLE_QUESTION = "Create a service that returns the previous national holiday in Estonia. Use this api : https://openholidaysapi.org/swagger/v1/swagger.json"
+#DEFAULT_SAMPLE_QUESTION = "Loo teenus, mis tagastab eelmise Eesti riigipüha. Kasuta seda API-t: https://openholidaysapi.org/swagger/v1/swagger.json"
+
+# National holidays TODAY - OK
+#DEFAULT_SAMPLE_QUESTION = "Create a service that returns whether today is a national holiday in Estonia. Use this api : https://openholidaysapi.org/swagger/v1/swagger.json"
+#DEFAULT_SAMPLE_QUESTION = "Loo teenus, mis tagastab, kas täna on Eesti riigipüha. Kasuta seda API-t: https://openholidaysapi.org/swagger/v1/swagger.json" 
+
+# National holidays SEARCH - OK
+#DEFAULT_SAMPLE_QUESTION = "Create a service that takes national holiday name in Estonia as input an returns at what time is the holiday in the current year. Use this api : https://openholidaysapi.org/swagger/v1/swagger.json"
+DEFAULT_SAMPLE_QUESTION = "Loo teenus, mis võtab sisendiks Eesti riigipüha nime ja tagastab, mis ajal on antud püha käesoleval aastal. Kasuta seda API-t: https://openholidaysapi.org/swagger/v1/swagger.json"
+
+# Currency exchange rate - OK
 #DEFAULT_SAMPLE_QUESTION = "Loo mulle valuuta võrdluse teenuse. Teenuse sisendiks on valuuta kood, mille edastab kasutaja. Ning tagasta antud valuuta kurss vastu Eurot"
 
 #DEFAULT_SAMPLE_QUESTION = "Loo mulle valuuta võrdluse teenuse. Teenuse sisendiks on valuuta kood, mille edastab kasutaja. kui antud valuuta koodi pole või ta on olematu tagasta teavitus, et antud valuutakoodi ei leitud. Teenuse sisendi peab muutma suurteks tähtedeks. Kui valuuta kood leitakse, tagasta antud valuuta kurss vastu Eurot"
