@@ -17,9 +17,7 @@ DEFAULT_SYSTEM_PROMPT = (
 
 EXAMPLES_DIR = Path(__file__).with_name("examples")
 
-DEFAULT_CONTEXT_FILENAMES = [
-    "sample_service_branching.json",
-]
+DEFAULT_CONTEXT_FILENAMES: list[str] = []
 
 DEFAULT_CONTEXT_PATHS = [EXAMPLES_DIR / name for name in DEFAULT_CONTEXT_FILENAMES]
 
