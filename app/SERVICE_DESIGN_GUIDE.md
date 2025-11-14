@@ -40,6 +40,7 @@ start → assign variables → [optional endpoint call] → transform/prepare ou
 ## 4. Variable Conventions
 - Variables are established via `assignElements` and referenced using `${variableName}` syntax.
 - Avoid nesting `${…}` inside other placeholders; when indexing into objects or arrays, keep the inner identifier bare (e.g., `${response.body.items[indexVar]}`).
+- Never wrap assignment values in Markdown backticks or code fences; if you accidentally produce one, rewrite the assignment so only plain text or placeholders remain.
 - Keep variable names descriptive (`startDate`, `responseData`, `last`).
 - When computing derived values, store intermediate results to avoid re-computation.
 - Only introduce variables that will be consumed by later steps (endpoints, conditions, transforms, or messages); remove dead assignments.
@@ -60,9 +61,11 @@ start → assign variables → [optional endpoint call] → transform/prepare ou
 - Content can be HTML inside `<p>` tags or plain text.
 - Ensure the message reflects the user’s request and uses context-specific data.
 
-## 7. Testing Metadata
+## 7. Testing & Optional UI Metadata
 - Each node tracks `testingPassed` to indicate validation status. Set to `true` when the step has been verified.
 - Nodes may include UI hints (`className`, `measured`, `selectable`, `draggable`) for front-end rendering; preserve these fields when generating new services.
+- Leave optional UI scaffolding—`multiChoiceQuestion`, `dynamicChoices`, button payloads—absent unless the prompt explicitly calls for interactive responses. Do not insert empty/default button arrays just to match the schema.
+- Likewise, only attach `endpoint` objects to nodes that really invoke the API. Display steps such as `assign` or `textfield` should reference previously declared endpoints via variables rather than embedding duplicate endpoint metadata.
 
 ## 8. UUID Handling
 - Every node and edge requires a unique UUID `id`.
