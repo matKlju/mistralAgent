@@ -41,8 +41,8 @@ except OSError:
 #DEFAULT_SAMPLE_QUESTION = "Loo teenus, mis kõik käesoleva aasta Eesti riigipühad. Kasuta seda API-t: https://openholidaysapi.org/swagger/v1/swagger.json"
 
 # National holidays YTD - OK
-#DEFAULT_SAMPLE_QUESTION = "Build a service that retrieves Estonia’s national holidays for the current year - year-to-date — from January 1st up to today — using the OpenHolidays API (spec: https://openholidaysapi.org/swagger/v1/swagger.json)."
-DEFAULT_SAMPLE_QUESTION = "Loo teenus, mis tagastab käesoleva aasta Eesti riigipühad aasta algusest kuni tänase kuupäevani. Kasuta seda API-t: https://openholidaysapi.org/swagger/v1/swagger.json"
+DEFAULT_SAMPLE_QUESTION = "Build a service that retrieves Estonia’s national holidays for the current year - year-to-date — from January 1st up to today — using the OpenHolidays API (spec: https://openholidaysapi.org/swagger/v1/swagger.json)."
+#DEFAULT_SAMPLE_QUESTION = "Loo teenus, mis tagastab käesoleva aasta Eesti riigipühad aasta algusest kuni tänase kuupäevani. Kasuta seda API-t: https://openholidaysapi.org/swagger/v1/swagger.json"
 
 # National holidays EOY - OK
 #DEFAULT_SAMPLE_QUESTION = "Create a service that returns the national holidays of Estonia from current day to the end of the year. Use this api : https://openholidaysapi.org/swagger/v1/swagger.json"
