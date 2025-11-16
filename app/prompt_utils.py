@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from pathlib import Path
-from typing import Optional
+from typing import Optional, Tuple
 
 from langchain_core.prompts import ChatPromptTemplate
 
@@ -19,6 +19,19 @@ PROMPT_MESSAGES = [
     ("human", "{context_block}\n\nUser question:\n{question}"),
 ]
 
+ESTONIAN_KEYWORDS = {
+    "valuuta",
+    "teenus",
+    "palun",
+    "eesti",
+    "valuutakood",
+    "kurss",
+    "hind",
+    "päev",
+    "info",
+    "kõige",
+}
+ESTONIAN_CHARACTERS = set("õäöüÕÄÖÜ")
 
 def load_context_from_file(path: Path, *, include_guide: bool = True) -> str:
     """Read a context file from disk, optionally prefixing the guide."""
@@ -89,3 +102,34 @@ def merge_with_guide(content: str, *, include_guide: bool = True) -> str:
         prefix = "\n\n---\n\n".join(sections)
         return f"{prefix}\n\n---\n\n{content.strip()}"
     return content.strip()
+
+
+def detect_prompt_language(question: str) -> str:
+    """Heuristically detect whether the user prompt is Estonian or English."""
+
+    if any(char in ESTONIAN_CHARACTERS for char in question):
+        return "Estonian"
+
+    normalized = question.lower()
+    if any(keyword in normalized for keyword in ESTONIAN_KEYWORDS):
+        return "Estonian"
+
+    return "English"
+
+
+def append_language_directive(question: str) -> Tuple[str, str]:
+    """Append a directive that locks the response language to the prompt language."""
+
+    language = detect_prompt_language(question)
+    directive = (
+        f"Language directive: The current user prompt is detected as {language}. "
+        f"Respond exclusively in {language} for all narrative text and templated strings."
+    )
+
+    question_body = question.rstrip()
+    if question_body:
+        augmented = f"{question_body}\n\n{directive}"
+    else:
+        augmented = directive
+
+    return augmented, language

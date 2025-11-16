@@ -16,7 +16,7 @@ from langchain_mistralai import ChatMistralAI
 from langchain_core.output_parsers import StrOutputParser
 
 from .constants import DEFAULT_SYSTEM_PROMPT
-from .prompt_utils import build_prompt_template, format_context
+from .prompt_utils import append_language_directive, build_prompt_template, format_context
 
 # Load environment variables early so the API key is discoverable.
 load_dotenv()
@@ -49,11 +49,12 @@ class MistralAgent:
     def run(self, question: str, *, context: Optional[str] = None) -> str:
         """Send a prompt to the agent and return the text response."""
         context_block = format_context(context)
+        augmented_question, _language = append_language_directive(question)
         return self._chain.invoke(
             {
                 "system_prompt": self._system_prompt,
                 "context_block": context_block,
-                "question": question,
+                "question": augmented_question,
             }
         )
 

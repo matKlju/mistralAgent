@@ -1,0 +1,215 @@
+{
+  "nodes": [
+    {
+      "id": "422ff621-53bf-4ea4-b376-87c08c80c7fc",
+      "type": "start",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "data": {
+        "type": "start",
+        "testingPassed": true
+      },
+      "className": "start",
+      "selectable": false,
+      "draggable": false,
+      "measured": {
+        "width": 350,
+        "height": 67
+      }
+    },
+    {
+      "id": "2cc601ee-db0f-4073-b81f-f922438d0b9c",
+      "position": {
+        "x": 0,
+        "y": 180
+      },
+      "data": {
+        "label": "commonElectricityAPI - 1",
+        "type": "step",
+        "stepType": "user-defined",
+        "readonly": false,
+        "endpoint": {
+          "endpointId": "2caf2135-b326-4e60-ad77-c4797a47a0ba",
+          "name": "commonElectricityAPI",
+          "definitions": [
+            {
+              "id": "aae27d2b-3a35-4b11-81ed-db92693ff407",
+              "label": "",
+              "methodType": "GET",
+              "type": "custom",
+              "dataType": "custom",
+              "path": "",
+              "supported": true,
+              "isSelected": true,
+              "body": {
+                "variables": [],
+                "rawData": {}
+              },
+              "headers": {
+                "variables": [],
+                "rawData": {}
+              },
+              "params": {
+                "variables": [],
+                "rawData": {}
+              },
+              "url": "https://dashboard.elering.ee/api/nps/price/EE/current"
+            }
+          ],
+          "isNew": false,
+          "type": "custom",
+          "isCommon": false,
+          "serviceId": "b5f5ec07-e140-4892-81ed-1c5fdacfcadf"
+        },
+        "testingPassed": true
+      },
+      "className": "step",
+      "type": "custom",
+      "measured": {
+        "width": 350,
+        "height": 42
+      }
+    },
+    {
+      "id": "572202c6-17d2-46f1-b8d4-35446477298e",
+      "position": {
+        "x": 0,
+        "y": 360
+      },
+      "data": {
+        "label": "Määra - 1",
+        "type": "step",
+        "stepType": "assign",
+        "readonly": false,
+        "assignElements": [
+          {
+            "id": "4bb99b16-dd20-4932-a91d-07a51edeb15a",
+            "key": "price",
+            "value": "${(commonElectricityAPI_res.response.body[\"data\"][\"0\"][\"price\"] / 1000).toFixed(3)}"
+          }
+        ],
+        "multiChoiceQuestion": {
+          "question": "",
+          "buttons": [
+            {
+              "id": "1",
+              "title": "Jah",
+              "payload": "#service, /POST/services/active/currentElectricityPrice_mcq_1_0"
+            },
+            {
+              "id": "2",
+              "title": "Ei",
+              "payload": "#service, /POST/services/active/currentElectricityPrice_mcq_1_1"
+            }
+          ]
+        },
+        "dynamicChoices": {
+          "list": "",
+          "serviceName": "",
+          "key": "",
+          "payloadKeys": ""
+        },
+        "testingPassed": true
+      },
+      "className": "step",
+      "type": "custom",
+      "measured": {
+        "width": 350,
+        "height": 42
+      },
+      "selected": false
+    },
+    {
+      "id": "1035ddf2-96b3-4b88-86f6-67cac16cdc31",
+      "position": {
+        "x": 0,
+        "y": 540
+      },
+      "data": {
+        "label": "Sõnum kliendile - 1",
+        "type": "step",
+        "stepType": "textfield",
+        "readonly": false,
+        "message": "<p><span style=\"background-color: rgb(255, 255, 255);\">Käesoleva tunni elektri börsihind on&nbsp;${price} €/kWh.</span></p>",
+        "multiChoiceQuestion": {
+          "question": "",
+          "buttons": [
+            {
+              "id": "1",
+              "title": "Jah",
+              "payload": "#service, /POST/services/active/currentElectricityPrice_mcq_1_0"
+            },
+            {
+              "id": "2",
+              "title": "Ei",
+              "payload": "#service, /POST/services/active/currentElectricityPrice_mcq_1_1"
+            }
+          ]
+        },
+        "dynamicChoices": {
+          "list": "",
+          "serviceName": "",
+          "key": "",
+          "payloadKeys": ""
+        },
+        "testingPassed": true
+      },
+      "className": "step",
+      "type": "custom",
+      "measured": {
+        "width": 350,
+        "height": 66
+      },
+      "selected": false
+    },
+    {
+      "id": "f5550d19-15e4-4706-a531-af8f968af34c",
+      "position": {
+        "x": 0,
+        "y": 720
+      },
+      "data": {
+        "label": "Teenuse lõpetamine - 1",
+        "type": "finishing-step",
+        "stepType": "finishing-step-end",
+        "readonly": true,
+        "testingPassed": true
+      },
+      "className": "finishing-step",
+      "type": "custom",
+      "measured": {
+        "width": 350,
+        "height": 66
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "422ff621-53bf-4ea4-b376-87c08c80c7fc->2cc601ee-db0f-4073-b81f-f922438d0b9c",
+      "source": "422ff621-53bf-4ea4-b376-87c08c80c7fc",
+      "target": "2cc601ee-db0f-4073-b81f-f922438d0b9c",
+      "type": "step",
+      "label": "+"
+    },
+    {
+      "id": "2cc601ee-db0f-4073-b81f-f922438d0b9c->572202c6-17d2-46f1-b8d4-35446477298e",
+      "source": "2cc601ee-db0f-4073-b81f-f922438d0b9c",
+      "target": "572202c6-17d2-46f1-b8d4-35446477298e",
+      "type": "step"
+    },
+    {
+      "id": "572202c6-17d2-46f1-b8d4-35446477298e->1035ddf2-96b3-4b88-86f6-67cac16cdc31",
+      "source": "572202c6-17d2-46f1-b8d4-35446477298e",
+      "target": "1035ddf2-96b3-4b88-86f6-67cac16cdc31",
+      "type": "step"
+    },
+    {
+      "id": "1035ddf2-96b3-4b88-86f6-67cac16cdc31->f5550d19-15e4-4706-a531-af8f968af34c",
+      "source": "1035ddf2-96b3-4b88-86f6-67cac16cdc31",
+      "target": "f5550d19-15e4-4706-a531-af8f968af34c",
+      "type": "step"
+    }
+  ]
+}

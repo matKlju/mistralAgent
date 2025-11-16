@@ -10,6 +10,7 @@ __pycache__/
 .idea/
 .vscode/
 *.log
+service_response.json
 coverage/
 htmlcov/
 .pytest_cache/

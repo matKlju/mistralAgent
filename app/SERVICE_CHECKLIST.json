@@ -18,6 +18,11 @@
   ],
   "rules": [
     {
+      "id": "no-backticks-in-assignments",
+      "description": "Assignments must never contain Markdown code fences or inline backticks—return raw strings or placeholders only.",
+      "severity": "error"
+    },
+    {
       "id": "uuid-nodes",
       "description": "Every node and edge must use a UUID-formatted id.",
       "severity": "error"
@@ -28,9 +33,44 @@
       "severity": "error"
     },
     {
+      "id": "no-unused-assigns",
+      "description": "Every variable created in an assign step must be referenced by a later node (endpoint params, conditions, transforms, or messages); remove unused values.",
+      "severity": "error"
+    },
+    {
+      "id": "no-placeholder-ui",
+      "description": "Only include `multiChoiceQuestion`, `dynamicChoices`, and button payload metadata when the service brief requires interactive choices; omit empty scaffolding.",
+      "severity": "error"
+    },
+    {
+      "id": "no-duplicate-endpoint-definitions",
+      "description": "Attach `endpoint` objects only to the node that actually performs the API call; later assign or message nodes must reference the prior response instead of embedding endpoint metadata again.",
+      "severity": "error"
+    },
+    {
+      "id": "single-layer-placeholders",
+      "description": "Do not wrap `${...}` expressions inside other `${...}` segments or strings that already contain substitutions; each placeholder must be standalone.",
+      "severity": "error"
+    },
+    {
+      "id": "no-nested-placeholders",
+      "description": "Avoid nesting `${...}` inside other placeholders; use literal variable names when indexing (e.g., `${data.items[indexVar]}` instead of `${data.items[${indexVar}]}`).",
+      "severity": "error"
+    },
+    {
+      "id": "condition-operator-js",
+      "description": "Condition rules may only use standard JavaScript comparison operators (`==`, `===`, `!=`, `!==`, `>`, `<`, `>=`, `<=`). Compute any other logic in an earlier assign step and reference the resulting variable.",
+      "severity": "error"
+    },
+    {
       "id": "condition-labels",
       "description": "Provide explicit labels on edges leaving condition nodes.",
       "severity": "warning"
+    },
+    {
+      "id": "endpoint-response-alias",
+      "description": "Reference endpoint responses using `${<endpointName>_res...}` where `<endpointName>` matches the `endpoint.name`; do not invent custom aliases.",
+      "severity": "error"
     },
     {
       "id": "endpoint-optional",
