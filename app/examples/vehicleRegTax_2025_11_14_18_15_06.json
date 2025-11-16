@@ -1,1 +1,871 @@
-{"nodes":[{"id":"422ff621-53bf-4ea4-b376-87c08c80c7fc","type":"start","position":{"x":0,"y":0},"data":{"type":"start","testingPassed":true},"className":"start","selectable":false,"draggable":false,"measured":{"width":350,"height":67}},{"id":"d16f8904-6c71-44f6-82cd-a2e94dcac669","position":{"x":0,"y":180},"data":{"label":"Määra - 1","type":"step","stepType":"assign","readonly":false,"endpoint":{"endpointId":"6c5ecaba-85b2-4af0-ac91-cefc8950d77a","name":"commonRiigikoguVotingsAPI","definitions":[{"id":"f259f8df-f5a6-4f1b-97b5-47ec6637c7bb","label":"","methodType":"GET","type":"custom","dataType":"custom","path":"","supported":true,"isSelected":true,"body":{"variables":[],"rawData":{}},"headers":{"variables":[],"rawData":{}},"params":{"variables":[{"id":"966dcab5-db72-49fa-aeea-5fa0b1283d60","name":"endDate","type":"custom","required":false,"value":"${endDate}"},{"id":"faebbebb-8926-4d1d-b2f0-12f1601bda84","name":"lang","type":"custom","required":false,"value":"ET"},{"id":"aa74fde7-2159-4b80-9a25-49a358ddbbb4","name":"startDate","type":"custom","required":false,"value":"${startDate}"}],"rawData":{}},"url":"https://api.riigikogu.ee/api/votings?lang=ET&endDate=%24%7BendDate%7D&startDate=%24%7BstartDate%7D"}],"isNew":false,"type":"custom","isCommon":false,"serviceId":"b5f5ec07-e140-4892-81ed-1c5fdacfcadf"},"assignElements":[{"id":"ab3c141c-2c10-4c1e-b4e2-d539c767a335","key":"registrationNumber","value":"${incoming.body.input || \"\"}"}],"multiChoiceQuestion":{"question":"","buttons":[{"id":"1","title":"Jah","payload":"#service, /POST/services/active/vehicletaxRegNr_mcq_1_0"},{"id":"2","title":"Ei","payload":"#service, /POST/services/active/vehicletaxRegNr_mcq_1_1"}]},"dynamicChoices":{"list":"","serviceName":"","key":"","payloadKeys":""},"testingPassed":true},"className":"step","type":"custom","measured":{"width":350,"height":42},"selected":false},{"id":"e4528993-2e28-4422-ad6a-93a4b5f61710","position":{"x":0,"y":360},"data":{"label":"commonMotorvehicletaxRegNumAPI - 1","type":"step","stepType":"user-defined","readonly":false,"endpoint":{"endpointId":"c0120e34-a023-4861-a33a-3fc9554e74e9","name":"commonMotorvehicletaxRegNumAPI","definitions":[{"id":"33cfe600-f3fd-40ab-ae89-7a306463d265","label":"","methodType":"GET","type":"custom","dataType":"custom","path":"","supported":true,"isSelected":true,"body":{"variables":[],"rawData":{}},"headers":{"variables":[],"rawData":{}},"params":{"variables":[{"id":"3b7efd17-9a30-4760-bc0a-3d20d61c14e8","name":"regNr","type":"custom","required":false,"value":"${registrationNumber}"},{"id":"0af6b8b1-2ede-4b5a-9c83-22421e680568","name":"calculationYear","type":"custom","required":false,"value":"2025"},{"id":"da0484e6-cd42-433f-8837-5140c3942550","name":"showRegFee","type":"custom","required":false,"value":"true"}],"rawData":{}},"url":"https://avalik.emta.ee/msm-public/v1/vehicle-tax/calculate-by-reg-nr?regNr=%24%7BregistrationNumber%7D&calculationYear=2025&showRegFee=true"}],"isNew":false,"type":"custom","isCommon":false,"serviceId":"b5f5ec07-e140-4892-81ed-1c5fdacfcadf"},"multiChoiceQuestion":{"question":"","buttons":[{"id":"1","title":"Jah","payload":"#service, /POST/services/active/vehicletaxRegNr_mcq_1_0"},{"id":"2","title":"Ei","payload":"#service, /POST/services/active/vehicletaxRegNr_mcq_1_1"}]},"dynamicChoices":{"list":"","serviceName":"","key":"","payloadKeys":""},"testingPassed":true},"className":"step","type":"custom","measured":{"width":350,"height":42},"selected":false},{"id":"09926e48-c7f4-4fd0-b364-2f7dbe218f4b","position":{"x":0,"y":540},"data":{"label":"Määra - 2","type":"step","stepType":"assign","readonly":false,"endpoint":{"endpointId":"c0120e34-a023-4861-a33a-3fc9554e74e9","name":"commonMotorvehicletaxRegNumAPI","definitions":[{"id":"33cfe600-f3fd-40ab-ae89-7a306463d265","label":"","methodType":"GET","type":"custom","dataType":"custom","path":"","supported":true,"isSelected":true,"body":{"variables":[],"rawData":{}},"headers":{"variables":[],"rawData":{}},"params":{"variables":[{"id":"3b7efd17-9a30-4760-bc0a-3d20d61c14e8","name":"regNr","type":"custom","required":false,"value":"${registrationNumber}"},{"id":"0af6b8b1-2ede-4b5a-9c83-22421e680568","name":"calculationYear","type":"custom","required":false,"value":"2025"},{"id":"da0484e6-cd42-433f-8837-5140c3942550","name":"showRegFee","type":"custom","required":false,"value":"true"}],"rawData":{}},"url":"https://avalik.emta.ee/msm-public/v1/vehicle-tax/calculate-by-reg-nr?regNr=%24%7BregistrationNumber%7D&calculationYear=2025&showRegFee=true"}],"isNew":false,"type":"custom","isCommon":false,"serviceId":"b5f5ec07-e140-4892-81ed-1c5fdacfcadf"},"assignElements":[{"id":"faf64d80-9f26-4a2e-a81a-0033d5c2d4ae","key":"taxData","value":"${commonMotorvehicletaxRegNumAPI_res.response.body}"},{"id":"00bff966-9d1d-46cd-b032-3a82cc90290d","key":"error","value":"${commonMotorvehicletaxRegNumAPI_res.response.body.errors}","data":[{"messages":{"en":"Vehicle was not found.","et":"Sõidukit ei leitud.","ru":"Транспортное средство не найдено."}}]}],"multiChoiceQuestion":{"question":"","buttons":[{"id":"1","title":"Jah","payload":"#service, /POST/services/active/serviceDemo_mcq_1_0"},{"id":"2","title":"Ei","payload":"#service, /POST/services/active/serviceDemo_mcq_1_1"}]},"dynamicChoices":{"list":"","serviceName":"","key":"","payloadKeys":""},"testingPassed":true},"className":"step","type":"custom","measured":{"width":350,"height":42},"selected":false},{"id":"0f1e1120-1236-4659-a4d8-205a82b4de5a","position":{"x":0,"y":720},"data":{"label":"Tingimus - 1","type":"step","stepType":"condition","readonly":false,"endpoint":{"endpointId":"c0120e34-a023-4861-a33a-3fc9554e74e9","name":"commonMotorvehicletaxRegNumAPI","definitions":[{"id":"33cfe600-f3fd-40ab-ae89-7a306463d265","label":"","methodType":"GET","type":"custom","dataType":"custom","path":"","supported":true,"isSelected":true,"body":{"variables":[],"rawData":{}},"headers":{"variables":[],"rawData":{}},"params":{"variables":[{"id":"3b7efd17-9a30-4760-bc0a-3d20d61c14e8","name":"regNr","type":"custom","required":false,"value":"${registrationNumber}"},{"id":"0af6b8b1-2ede-4b5a-9c83-22421e680568","name":"calculationYear","type":"custom","required":false,"value":"2025"},{"id":"da0484e6-cd42-433f-8837-5140c3942550","name":"showRegFee","type":"custom","required":false,"value":"true"}],"rawData":{}},"url":"https://avalik.emta.ee/msm-public/v1/vehicle-tax/calculate-by-reg-nr?regNr=%24%7BregistrationNumber%7D&calculationYear=2025&showRegFee=true"}],"isNew":false,"type":"custom","isCommon":false,"serviceId":"b5f5ec07-e140-4892-81ed-1c5fdacfcadf"},"rules":{"id":"96826551-7a3e-4b90-9d29-156b05be1fc1","children":[{"id":"2e844564-2ebf-4bbf-bf50-e4d497a99b6e","field":"${commonMotorvehicletaxRegNumAPI_res.response.body.errors.length}","operator":">","value":"0"}],"type":"and","not":false},"multiChoiceQuestion":{"question":"","buttons":[{"id":"1","title":"Jah","payload":"#service, /POST/services/active/serviceDemo_mcq_2_0"},{"id":"2","title":"Ei","payload":"#service, /POST/services/active/serviceDemo_mcq_2_1"}]},"dynamicChoices":{"list":"","serviceName":"","key":"","payloadKeys":""},"testingPassed":true},"className":"step","type":"custom","measured":{"width":350,"height":42},"selected":false},{"id":"10b26102-6fd2-4268-8a42-617c9c26830f","position":{"x":-200,"y":900},"data":{"label":"Sõnum kliendile - 1","type":"step","stepType":"textfield","readonly":false,"endpoint":{"endpointId":"c0120e34-a023-4861-a33a-3fc9554e74e9","name":"commonMotorvehicletaxRegNumAPI","definitions":[{"id":"33cfe600-f3fd-40ab-ae89-7a306463d265","label":"","methodType":"GET","type":"custom","dataType":"custom","path":"","supported":true,"isSelected":true,"body":{"variables":[],"rawData":{}},"headers":{"variables":[],"rawData":{}},"params":{"variables":[{"id":"3b7efd17-9a30-4760-bc0a-3d20d61c14e8","name":"regNr","type":"custom","required":false,"value":"${registrationNumber}"},{"id":"0af6b8b1-2ede-4b5a-9c83-22421e680568","name":"calculationYear","type":"custom","required":false,"value":"2025"},{"id":"da0484e6-cd42-433f-8837-5140c3942550","name":"showRegFee","type":"custom","required":false,"value":"true"}],"rawData":{}},"url":"https://avalik.emta.ee/msm-public/v1/vehicle-tax/calculate-by-reg-nr?regNr=%24%7BregistrationNumber%7D&calculationYear=2025&showRegFee=true"}],"isNew":false,"type":"custom","isCommon":false,"serviceId":"b5f5ec07-e140-4892-81ed-1c5fdacfcadf"},"message":"<p>Sõidukit ei leitud!</p>","multiChoiceQuestion":{"question":"","buttons":[{"id":"1","title":"Jah","payload":"#service, /POST/services/active/serviceDemo_mcq_3_0"},{"id":"2","title":"Ei","payload":"#service, /POST/services/active/serviceDemo_mcq_3_1"}]},"dynamicChoices":{"list":"","serviceName":"","key":"","payloadKeys":""},"testingPassed":true},"className":"step","type":"custom","measured":{"width":350,"height":66},"selected":false},{"id":"7544de45-0e7d-4b52-b73d-53ca7990c82b","position":{"x":200,"y":900},"data":{"label":"Määra - 3","type":"step","stepType":"assign","readonly":false,"endpoint":{"endpointId":"c0120e34-a023-4861-a33a-3fc9554e74e9","name":"commonMotorvehicletaxRegNumAPI","definitions":[{"id":"33cfe600-f3fd-40ab-ae89-7a306463d265","label":"","methodType":"GET","type":"custom","dataType":"custom","path":"","supported":true,"isSelected":true,"body":{"variables":[],"rawData":{}},"headers":{"variables":[],"rawData":{}},"params":{"variables":[{"id":"3b7efd17-9a30-4760-bc0a-3d20d61c14e8","name":"regNr","type":"custom","required":false,"value":"${registrationNumber}"},{"id":"0af6b8b1-2ede-4b5a-9c83-22421e680568","name":"calculationYear","type":"custom","required":false,"value":"2025"},{"id":"da0484e6-cd42-433f-8837-5140c3942550","name":"showRegFee","type":"custom","required":false,"value":"true"}],"rawData":{}},"url":"https://avalik.emta.ee/msm-public/v1/vehicle-tax/calculate-by-reg-nr?regNr=%24%7BregistrationNumber%7D&calculationYear=2025&showRegFee=true"}],"isNew":false,"type":"custom","isCommon":false,"serviceId":"b5f5ec07-e140-4892-81ed-1c5fdacfcadf"},"assignElements":[{"id":"41ae5e82-9619-45dd-94e5-be389b0ca01d","key":"yearlyTotal","value":"${commonMotorvehicletaxRegNumAPI_res.response.body[\"yearlyFee\"][\"totalPrice\"]}"},{"id":"39b22c53-58a4-44c9-8b11-83e43b01eeab","key":"yearlyCo2","value":"${commonMotorvehicletaxRegNumAPI_res.response.body[\"yearlyFee\"][\"co2Price\"]}"},{"id":"0db06925-27fd-4321-b1fa-75fb1974f964","key":"yearlyMass","value":"${commonMotorvehicletaxRegNumAPI_res.response.body[\"yearlyFee\"][\"massPrice\"]}"},{"id":"499a651d-9ccc-47e1-91a7-9786181c84df","key":"yearlyBase","value":"${commonMotorvehicletaxRegNumAPI_res.response.body[\"yearlyFee\"][\"basePrice\"]}"},{"id":"e5ebb16c-193b-4122-9602-b8eea9c9f7f3","key":"regTotal","value":"${commonMotorvehicletaxRegNumAPI_res.response.body[\"regFee\"][\"totalPrice\"]}"},{"id":"aff98635-2325-4abf-83f1-f7740d288c9b","key":"regCo2","value":"${commonMotorvehicletaxRegNumAPI_res.response.body[\"regFee\"][\"co2Price\"]}"},{"id":"13e83ec6-bef0-498d-9a9c-7f62a6fb4a26","key":"regMass","value":"${commonMotorvehicletaxRegNumAPI_res.response.body[\"regFee\"][\"massPrice\"]}"},{"id":"8b5fe207-6a92-453b-b609-16c3e0525188","key":"regBase","value":"${commonMotorvehicletaxRegNumAPI_res.response.body[\"regFee\"][\"basePrice\"]}"}],"multiChoiceQuestion":{"question":"","buttons":[{"id":"1","title":"Jah","payload":"#service, /POST/services/active/serviceDemo_mcq_1_0"},{"id":"2","title":"Ei","payload":"#service, /POST/services/active/serviceDemo_mcq_1_1"}]},"dynamicChoices":{"list":"","serviceName":"","key":"","payloadKeys":""},"testingPassed":true},"className":"step","type":"custom","measured":{"width":350,"height":42},"selected":false},{"id":"700012c1-9b3b-4dbd-97f8-d4ef7a4cb45c","position":{"x":200,"y":1080},"data":{"label":"Sõnum kliendile - 2","type":"step","stepType":"textfield","readonly":false,"endpoint":{"endpointId":"c0120e34-a023-4861-a33a-3fc9554e74e9","name":"commonMotorvehicletaxRegNumAPI","definitions":[{"id":"33cfe600-f3fd-40ab-ae89-7a306463d265","label":"","methodType":"GET","type":"custom","dataType":"custom","path":"","supported":true,"isSelected":true,"body":{"variables":[],"rawData":{}},"headers":{"variables":[],"rawData":{}},"params":{"variables":[{"id":"3b7efd17-9a30-4760-bc0a-3d20d61c14e8","name":"regNr","type":"custom","required":false,"value":"${registrationNumber}"},{"id":"0af6b8b1-2ede-4b5a-9c83-22421e680568","name":"calculationYear","type":"custom","required":false,"value":"2025"},{"id":"da0484e6-cd42-433f-8837-5140c3942550","name":"showRegFee","type":"custom","required":false,"value":"true"}],"rawData":{}},"url":"https://avalik.emta.ee/msm-public/v1/vehicle-tax/calculate-by-reg-nr?regNr=%24%7BregistrationNumber%7D&calculationYear=2025&showRegFee=true"}],"isNew":false,"type":"custom","isCommon":false,"serviceId":"b5f5ec07-e140-4892-81ed-1c5fdacfcadf"},"message":"<p><span style=\"background-color: rgb(255, 255, 255);\">Sõiduki ${registrationNumber} aastamaks on kokku ${yearlyTotal}€. Millest baasosa on ${yearlyBase}€. CO₂ eriheite osa on ${yearlyCo2}€. Massiosa on ${yearlyMass}€. Registreerimistasu tuleb ${regTotal}€. Millest baasosa on ${regBase}€. CO₂ eriheite osa on ${regCo2}€. Massiosa on ${regMass}€.</span></p>","multiChoiceQuestion":{"question":"","buttons":[{"id":"1","title":"Jah","payload":"#service, /POST/services/active/serviceDemo_mcq_3_0"},{"id":"2","title":"Ei","payload":"#service, /POST/services/active/serviceDemo_mcq_3_1"}]},"dynamicChoices":{"list":"","serviceName":"","key":"","payloadKeys":""},"testingPassed":true},"className":"step","type":"custom","measured":{"width":350,"height":66},"selected":false},{"id":"ee1735b2-0b23-41b0-bfd5-c4ec5a4c98fe","position":{"x":0,"y":1260},"data":{"label":"Teenuse lõpetamine - 1","type":"finishing-step","stepType":"finishing-step-end","readonly":true,"testingPassed":true},"className":"finishing-step","type":"custom","measured":{"width":350,"height":66}}],"edges":[{"id":"422ff621-53bf-4ea4-b376-87c08c80c7fc->d16f8904-6c71-44f6-82cd-a2e94dcac669","source":"422ff621-53bf-4ea4-b376-87c08c80c7fc","target":"d16f8904-6c71-44f6-82cd-a2e94dcac669","type":"step","label":"+"},{"id":"d16f8904-6c71-44f6-82cd-a2e94dcac669->e4528993-2e28-4422-ad6a-93a4b5f61710","source":"d16f8904-6c71-44f6-82cd-a2e94dcac669","target":"e4528993-2e28-4422-ad6a-93a4b5f61710","type":"step"},{"id":"e4528993-2e28-4422-ad6a-93a4b5f61710->09926e48-c7f4-4fd0-b364-2f7dbe218f4b","source":"e4528993-2e28-4422-ad6a-93a4b5f61710","target":"09926e48-c7f4-4fd0-b364-2f7dbe218f4b","type":"step","label":"+"},{"id":"09926e48-c7f4-4fd0-b364-2f7dbe218f4b->0f1e1120-1236-4659-a4d8-205a82b4de5a","source":"09926e48-c7f4-4fd0-b364-2f7dbe218f4b","target":"0f1e1120-1236-4659-a4d8-205a82b4de5a","type":"step"},{"id":"700012c1-9b3b-4dbd-97f8-d4ef7a4cb45c->ee1735b2-0b23-41b0-bfd5-c4ec5a4c98fe","source":"700012c1-9b3b-4dbd-97f8-d4ef7a4cb45c","target":"ee1735b2-0b23-41b0-bfd5-c4ec5a4c98fe","type":"step"},{"id":"10b26102-6fd2-4268-8a42-617c9c26830f->ee1735b2-0b23-41b0-bfd5-c4ec5a4c98fe","source":"10b26102-6fd2-4268-8a42-617c9c26830f","target":"ee1735b2-0b23-41b0-bfd5-c4ec5a4c98fe","type":"step"},{"id":"0f1e1120-1236-4659-a4d8-205a82b4de5a->10b26102-6fd2-4268-8a42-617c9c26830f","source":"0f1e1120-1236-4659-a4d8-205a82b4de5a","target":"10b26102-6fd2-4268-8a42-617c9c26830f","type":"step","animated":false,"deletable":true,"label":"Success"},{"id":"0f1e1120-1236-4659-a4d8-205a82b4de5a->7544de45-0e7d-4b52-b73d-53ca7990c82b","source":"0f1e1120-1236-4659-a4d8-205a82b4de5a","target":"7544de45-0e7d-4b52-b73d-53ca7990c82b","type":"step","label":"Failure"},{"id":"7544de45-0e7d-4b52-b73d-53ca7990c82b->700012c1-9b3b-4dbd-97f8-d4ef7a4cb45c","source":"7544de45-0e7d-4b52-b73d-53ca7990c82b","target":"700012c1-9b3b-4dbd-97f8-d4ef7a4cb45c","type":"step","animated":false,"deletable":true}]}
+{
+  "nodes": [
+    {
+      "id": "422ff621-53bf-4ea4-b376-87c08c80c7fc",
+      "type": "start",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "data": {
+        "type": "start",
+        "testingPassed": true
+      },
+      "className": "start",
+      "selectable": false,
+      "draggable": false,
+      "measured": {
+        "width": 350,
+        "height": 67
+      }
+    },
+    {
+      "id": "d16f8904-6c71-44f6-82cd-a2e94dcac669",
+      "position": {
+        "x": 0,
+        "y": 180
+      },
+      "data": {
+        "label": "Määra - 1",
+        "type": "step",
+        "stepType": "assign",
+        "readonly": false,
+        "endpoint": {
+          "endpointId": "6c5ecaba-85b2-4af0-ac91-cefc8950d77a",
+          "name": "commonRiigikoguVotingsAPI",
+          "definitions": [
+            {
+              "id": "f259f8df-f5a6-4f1b-97b5-47ec6637c7bb",
+              "label": "",
+              "methodType": "GET",
+              "type": "custom",
+              "dataType": "custom",
+              "path": "",
+              "supported": true,
+              "isSelected": true,
+              "body": {
+                "variables": [],
+                "rawData": {}
+              },
+              "headers": {
+                "variables": [],
+                "rawData": {}
+              },
+              "params": {
+                "variables": [
+                  {
+                    "id": "966dcab5-db72-49fa-aeea-5fa0b1283d60",
+                    "name": "endDate",
+                    "type": "custom",
+                    "required": false,
+                    "value": "${endDate}"
+                  },
+                  {
+                    "id": "faebbebb-8926-4d1d-b2f0-12f1601bda84",
+                    "name": "lang",
+                    "type": "custom",
+                    "required": false,
+                    "value": "ET"
+                  },
+                  {
+                    "id": "aa74fde7-2159-4b80-9a25-49a358ddbbb4",
+                    "name": "startDate",
+                    "type": "custom",
+                    "required": false,
+                    "value": "${startDate}"
+                  }
+                ],
+                "rawData": {}
+              },
+              "url": "https://api.riigikogu.ee/api/votings?lang=ET&endDate=%24%7BendDate%7D&startDate=%24%7BstartDate%7D"
+            }
+          ],
+          "isNew": false,
+          "type": "custom",
+          "isCommon": false,
+          "serviceId": "b5f5ec07-e140-4892-81ed-1c5fdacfcadf"
+        },
+        "assignElements": [
+          {
+            "id": "ab3c141c-2c10-4c1e-b4e2-d539c767a335",
+            "key": "registrationNumber",
+            "value": "${incoming.body.input || \"\"}"
+          }
+        ],
+        "multiChoiceQuestion": {
+          "question": "",
+          "buttons": [
+            {
+              "id": "1",
+              "title": "Jah",
+              "payload": "#service, /POST/services/active/vehicletaxRegNr_mcq_1_0"
+            },
+            {
+              "id": "2",
+              "title": "Ei",
+              "payload": "#service, /POST/services/active/vehicletaxRegNr_mcq_1_1"
+            }
+          ]
+        },
+        "dynamicChoices": {
+          "list": "",
+          "serviceName": "",
+          "key": "",
+          "payloadKeys": ""
+        },
+        "testingPassed": true
+      },
+      "className": "step",
+      "type": "custom",
+      "measured": {
+        "width": 350,
+        "height": 42
+      },
+      "selected": false
+    },
+    {
+      "id": "e4528993-2e28-4422-ad6a-93a4b5f61710",
+      "position": {
+        "x": 0,
+        "y": 360
+      },
+      "data": {
+        "label": "commonMotorvehicletaxRegNumAPI - 1",
+        "type": "step",
+        "stepType": "user-defined",
+        "readonly": false,
+        "endpoint": {
+          "endpointId": "c0120e34-a023-4861-a33a-3fc9554e74e9",
+          "name": "commonMotorvehicletaxRegNumAPI",
+          "definitions": [
+            {
+              "id": "33cfe600-f3fd-40ab-ae89-7a306463d265",
+              "label": "",
+              "methodType": "GET",
+              "type": "custom",
+              "dataType": "custom",
+              "path": "",
+              "supported": true,
+              "isSelected": true,
+              "body": {
+                "variables": [],
+                "rawData": {}
+              },
+              "headers": {
+                "variables": [],
+                "rawData": {}
+              },
+              "params": {
+                "variables": [
+                  {
+                    "id": "3b7efd17-9a30-4760-bc0a-3d20d61c14e8",
+                    "name": "regNr",
+                    "type": "custom",
+                    "required": false,
+                    "value": "${registrationNumber}"
+                  },
+                  {
+                    "id": "0af6b8b1-2ede-4b5a-9c83-22421e680568",
+                    "name": "calculationYear",
+                    "type": "custom",
+                    "required": false,
+                    "value": "2025"
+                  },
+                  {
+                    "id": "da0484e6-cd42-433f-8837-5140c3942550",
+                    "name": "showRegFee",
+                    "type": "custom",
+                    "required": false,
+                    "value": "true"
+                  }
+                ],
+                "rawData": {}
+              },
+              "url": "https://avalik.emta.ee/msm-public/v1/vehicle-tax/calculate-by-reg-nr?regNr=%24%7BregistrationNumber%7D&calculationYear=2025&showRegFee=true"
+            }
+          ],
+          "isNew": false,
+          "type": "custom",
+          "isCommon": false,
+          "serviceId": "b5f5ec07-e140-4892-81ed-1c5fdacfcadf"
+        },
+        "multiChoiceQuestion": {
+          "question": "",
+          "buttons": [
+            {
+              "id": "1",
+              "title": "Jah",
+              "payload": "#service, /POST/services/active/vehicletaxRegNr_mcq_1_0"
+            },
+            {
+              "id": "2",
+              "title": "Ei",
+              "payload": "#service, /POST/services/active/vehicletaxRegNr_mcq_1_1"
+            }
+          ]
+        },
+        "dynamicChoices": {
+          "list": "",
+          "serviceName": "",
+          "key": "",
+          "payloadKeys": ""
+        },
+        "testingPassed": true
+      },
+      "className": "step",
+      "type": "custom",
+      "measured": {
+        "width": 350,
+        "height": 42
+      },
+      "selected": false
+    },
+    {
+      "id": "09926e48-c7f4-4fd0-b364-2f7dbe218f4b",
+      "position": {
+        "x": 0,
+        "y": 540
+      },
+      "data": {
+        "label": "Määra - 2",
+        "type": "step",
+        "stepType": "assign",
+        "readonly": false,
+        "endpoint": {
+          "endpointId": "c0120e34-a023-4861-a33a-3fc9554e74e9",
+          "name": "commonMotorvehicletaxRegNumAPI",
+          "definitions": [
+            {
+              "id": "33cfe600-f3fd-40ab-ae89-7a306463d265",
+              "label": "",
+              "methodType": "GET",
+              "type": "custom",
+              "dataType": "custom",
+              "path": "",
+              "supported": true,
+              "isSelected": true,
+              "body": {
+                "variables": [],
+                "rawData": {}
+              },
+              "headers": {
+                "variables": [],
+                "rawData": {}
+              },
+              "params": {
+                "variables": [
+                  {
+                    "id": "3b7efd17-9a30-4760-bc0a-3d20d61c14e8",
+                    "name": "regNr",
+                    "type": "custom",
+                    "required": false,
+                    "value": "${registrationNumber}"
+                  },
+                  {
+                    "id": "0af6b8b1-2ede-4b5a-9c83-22421e680568",
+                    "name": "calculationYear",
+                    "type": "custom",
+                    "required": false,
+                    "value": "2025"
+                  },
+                  {
+                    "id": "da0484e6-cd42-433f-8837-5140c3942550",
+                    "name": "showRegFee",
+                    "type": "custom",
+                    "required": false,
+                    "value": "true"
+                  }
+                ],
+                "rawData": {}
+              },
+              "url": "https://avalik.emta.ee/msm-public/v1/vehicle-tax/calculate-by-reg-nr?regNr=%24%7BregistrationNumber%7D&calculationYear=2025&showRegFee=true"
+            }
+          ],
+          "isNew": false,
+          "type": "custom",
+          "isCommon": false,
+          "serviceId": "b5f5ec07-e140-4892-81ed-1c5fdacfcadf"
+        },
+        "assignElements": [
+          {
+            "id": "faf64d80-9f26-4a2e-a81a-0033d5c2d4ae",
+            "key": "taxData",
+            "value": "${commonMotorvehicletaxRegNumAPI_res.response.body}"
+          },
+          {
+            "id": "00bff966-9d1d-46cd-b032-3a82cc90290d",
+            "key": "error",
+            "value": "${commonMotorvehicletaxRegNumAPI_res.response.body.errors}",
+            "data": [
+              {
+                "messages": {
+                  "en": "Vehicle was not found.",
+                  "et": "Sõidukit ei leitud.",
+                  "ru": "Транспортное средство не найдено."
+                }
+              }
+            ]
+          }
+        ],
+        "multiChoiceQuestion": {
+          "question": "",
+          "buttons": [
+            {
+              "id": "1",
+              "title": "Jah",
+              "payload": "#service, /POST/services/active/serviceDemo_mcq_1_0"
+            },
+            {
+              "id": "2",
+              "title": "Ei",
+              "payload": "#service, /POST/services/active/serviceDemo_mcq_1_1"
+            }
+          ]
+        },
+        "dynamicChoices": {
+          "list": "",
+          "serviceName": "",
+          "key": "",
+          "payloadKeys": ""
+        },
+        "testingPassed": true
+      },
+      "className": "step",
+      "type": "custom",
+      "measured": {
+        "width": 350,
+        "height": 42
+      },
+      "selected": false
+    },
+    {
+      "id": "0f1e1120-1236-4659-a4d8-205a82b4de5a",
+      "position": {
+        "x": 0,
+        "y": 720
+      },
+      "data": {
+        "label": "Tingimus - 1",
+        "type": "step",
+        "stepType": "condition",
+        "readonly": false,
+        "endpoint": {
+          "endpointId": "c0120e34-a023-4861-a33a-3fc9554e74e9",
+          "name": "commonMotorvehicletaxRegNumAPI",
+          "definitions": [
+            {
+              "id": "33cfe600-f3fd-40ab-ae89-7a306463d265",
+              "label": "",
+              "methodType": "GET",
+              "type": "custom",
+              "dataType": "custom",
+              "path": "",
+              "supported": true,
+              "isSelected": true,
+              "body": {
+                "variables": [],
+                "rawData": {}
+              },
+              "headers": {
+                "variables": [],
+                "rawData": {}
+              },
+              "params": {
+                "variables": [
+                  {
+                    "id": "3b7efd17-9a30-4760-bc0a-3d20d61c14e8",
+                    "name": "regNr",
+                    "type": "custom",
+                    "required": false,
+                    "value": "${registrationNumber}"
+                  },
+                  {
+                    "id": "0af6b8b1-2ede-4b5a-9c83-22421e680568",
+                    "name": "calculationYear",
+                    "type": "custom",
+                    "required": false,
+                    "value": "2025"
+                  },
+                  {
+                    "id": "da0484e6-cd42-433f-8837-5140c3942550",
+                    "name": "showRegFee",
+                    "type": "custom",
+                    "required": false,
+                    "value": "true"
+                  }
+                ],
+                "rawData": {}
+              },
+              "url": "https://avalik.emta.ee/msm-public/v1/vehicle-tax/calculate-by-reg-nr?regNr=%24%7BregistrationNumber%7D&calculationYear=2025&showRegFee=true"
+            }
+          ],
+          "isNew": false,
+          "type": "custom",
+          "isCommon": false,
+          "serviceId": "b5f5ec07-e140-4892-81ed-1c5fdacfcadf"
+        },
+        "rules": {
+          "id": "96826551-7a3e-4b90-9d29-156b05be1fc1",
+          "children": [
+            {
+              "id": "2e844564-2ebf-4bbf-bf50-e4d497a99b6e",
+              "field": "${commonMotorvehicletaxRegNumAPI_res.response.body.errors.length}",
+              "operator": ">",
+              "value": "0"
+            }
+          ],
+          "type": "and",
+          "not": false
+        },
+        "multiChoiceQuestion": {
+          "question": "",
+          "buttons": [
+            {
+              "id": "1",
+              "title": "Jah",
+              "payload": "#service, /POST/services/active/serviceDemo_mcq_2_0"
+            },
+            {
+              "id": "2",
+              "title": "Ei",
+              "payload": "#service, /POST/services/active/serviceDemo_mcq_2_1"
+            }
+          ]
+        },
+        "dynamicChoices": {
+          "list": "",
+          "serviceName": "",
+          "key": "",
+          "payloadKeys": ""
+        },
+        "testingPassed": true
+      },
+      "className": "step",
+      "type": "custom",
+      "measured": {
+        "width": 350,
+        "height": 42
+      },
+      "selected": false
+    },
+    {
+      "id": "10b26102-6fd2-4268-8a42-617c9c26830f",
+      "position": {
+        "x": -200,
+        "y": 900
+      },
+      "data": {
+        "label": "Sõnum kliendile - 1",
+        "type": "step",
+        "stepType": "textfield",
+        "readonly": false,
+        "endpoint": {
+          "endpointId": "c0120e34-a023-4861-a33a-3fc9554e74e9",
+          "name": "commonMotorvehicletaxRegNumAPI",
+          "definitions": [
+            {
+              "id": "33cfe600-f3fd-40ab-ae89-7a306463d265",
+              "label": "",
+              "methodType": "GET",
+              "type": "custom",
+              "dataType": "custom",
+              "path": "",
+              "supported": true,
+              "isSelected": true,
+              "body": {
+                "variables": [],
+                "rawData": {}
+              },
+              "headers": {
+                "variables": [],
+                "rawData": {}
+              },
+              "params": {
+                "variables": [
+                  {
+                    "id": "3b7efd17-9a30-4760-bc0a-3d20d61c14e8",
+                    "name": "regNr",
+                    "type": "custom",
+                    "required": false,
+                    "value": "${registrationNumber}"
+                  },
+                  {
+                    "id": "0af6b8b1-2ede-4b5a-9c83-22421e680568",
+                    "name": "calculationYear",
+                    "type": "custom",
+                    "required": false,
+                    "value": "2025"
+                  },
+                  {
+                    "id": "da0484e6-cd42-433f-8837-5140c3942550",
+                    "name": "showRegFee",
+                    "type": "custom",
+                    "required": false,
+                    "value": "true"
+                  }
+                ],
+                "rawData": {}
+              },
+              "url": "https://avalik.emta.ee/msm-public/v1/vehicle-tax/calculate-by-reg-nr?regNr=%24%7BregistrationNumber%7D&calculationYear=2025&showRegFee=true"
+            }
+          ],
+          "isNew": false,
+          "type": "custom",
+          "isCommon": false,
+          "serviceId": "b5f5ec07-e140-4892-81ed-1c5fdacfcadf"
+        },
+        "message": "<p>Sõidukit ei leitud!</p>",
+        "multiChoiceQuestion": {
+          "question": "",
+          "buttons": [
+            {
+              "id": "1",
+              "title": "Jah",
+              "payload": "#service, /POST/services/active/serviceDemo_mcq_3_0"
+            },
+            {
+              "id": "2",
+              "title": "Ei",
+              "payload": "#service, /POST/services/active/serviceDemo_mcq_3_1"
+            }
+          ]
+        },
+        "dynamicChoices": {
+          "list": "",
+          "serviceName": "",
+          "key": "",
+          "payloadKeys": ""
+        },
+        "testingPassed": true
+      },
+      "className": "step",
+      "type": "custom",
+      "measured": {
+        "width": 350,
+        "height": 66
+      },
+      "selected": false
+    },
+    {
+      "id": "7544de45-0e7d-4b52-b73d-53ca7990c82b",
+      "position": {
+        "x": 200,
+        "y": 900
+      },
+      "data": {
+        "label": "Määra - 3",
+        "type": "step",
+        "stepType": "assign",
+        "readonly": false,
+        "endpoint": {
+          "endpointId": "c0120e34-a023-4861-a33a-3fc9554e74e9",
+          "name": "commonMotorvehicletaxRegNumAPI",
+          "definitions": [
+            {
+              "id": "33cfe600-f3fd-40ab-ae89-7a306463d265",
+              "label": "",
+              "methodType": "GET",
+              "type": "custom",
+              "dataType": "custom",
+              "path": "",
+              "supported": true,
+              "isSelected": true,
+              "body": {
+                "variables": [],
+                "rawData": {}
+              },
+              "headers": {
+                "variables": [],
+                "rawData": {}
+              },
+              "params": {
+                "variables": [
+                  {
+                    "id": "3b7efd17-9a30-4760-bc0a-3d20d61c14e8",
+                    "name": "regNr",
+                    "type": "custom",
+                    "required": false,
+                    "value": "${registrationNumber}"
+                  },
+                  {
+                    "id": "0af6b8b1-2ede-4b5a-9c83-22421e680568",
+                    "name": "calculationYear",
+                    "type": "custom",
+                    "required": false,
+                    "value": "2025"
+                  },
+                  {
+                    "id": "da0484e6-cd42-433f-8837-5140c3942550",
+                    "name": "showRegFee",
+                    "type": "custom",
+                    "required": false,
+                    "value": "true"
+                  }
+                ],
+                "rawData": {}
+              },
+              "url": "https://avalik.emta.ee/msm-public/v1/vehicle-tax/calculate-by-reg-nr?regNr=%24%7BregistrationNumber%7D&calculationYear=2025&showRegFee=true"
+            }
+          ],
+          "isNew": false,
+          "type": "custom",
+          "isCommon": false,
+          "serviceId": "b5f5ec07-e140-4892-81ed-1c5fdacfcadf"
+        },
+        "assignElements": [
+          {
+            "id": "41ae5e82-9619-45dd-94e5-be389b0ca01d",
+            "key": "yearlyTotal",
+            "value": "${commonMotorvehicletaxRegNumAPI_res.response.body[\"yearlyFee\"][\"totalPrice\"]}"
+          },
+          {
+            "id": "39b22c53-58a4-44c9-8b11-83e43b01eeab",
+            "key": "yearlyCo2",
+            "value": "${commonMotorvehicletaxRegNumAPI_res.response.body[\"yearlyFee\"][\"co2Price\"]}"
+          },
+          {
+            "id": "0db06925-27fd-4321-b1fa-75fb1974f964",
+            "key": "yearlyMass",
+            "value": "${commonMotorvehicletaxRegNumAPI_res.response.body[\"yearlyFee\"][\"massPrice\"]}"
+          },
+          {
+            "id": "499a651d-9ccc-47e1-91a7-9786181c84df",
+            "key": "yearlyBase",
+            "value": "${commonMotorvehicletaxRegNumAPI_res.response.body[\"yearlyFee\"][\"basePrice\"]}"
+          },
+          {
+            "id": "e5ebb16c-193b-4122-9602-b8eea9c9f7f3",
+            "key": "regTotal",
+            "value": "${commonMotorvehicletaxRegNumAPI_res.response.body[\"regFee\"][\"totalPrice\"]}"
+          },
+          {
+            "id": "aff98635-2325-4abf-83f1-f7740d288c9b",
+            "key": "regCo2",
+            "value": "${commonMotorvehicletaxRegNumAPI_res.response.body[\"regFee\"][\"co2Price\"]}"
+          },
+          {
+            "id": "13e83ec6-bef0-498d-9a9c-7f62a6fb4a26",
+            "key": "regMass",
+            "value": "${commonMotorvehicletaxRegNumAPI_res.response.body[\"regFee\"][\"massPrice\"]}"
+          },
+          {
+            "id": "8b5fe207-6a92-453b-b609-16c3e0525188",
+            "key": "regBase",
+            "value": "${commonMotorvehicletaxRegNumAPI_res.response.body[\"regFee\"][\"basePrice\"]}"
+          }
+        ],
+        "multiChoiceQuestion": {
+          "question": "",
+          "buttons": [
+            {
+              "id": "1",
+              "title": "Jah",
+              "payload": "#service, /POST/services/active/serviceDemo_mcq_1_0"
+            },
+            {
+              "id": "2",
+              "title": "Ei",
+              "payload": "#service, /POST/services/active/serviceDemo_mcq_1_1"
+            }
+          ]
+        },
+        "dynamicChoices": {
+          "list": "",
+          "serviceName": "",
+          "key": "",
+          "payloadKeys": ""
+        },
+        "testingPassed": true
+      },
+      "className": "step",
+      "type": "custom",
+      "measured": {
+        "width": 350,
+        "height": 42
+      },
+      "selected": false
+    },
+    {
+      "id": "700012c1-9b3b-4dbd-97f8-d4ef7a4cb45c",
+      "position": {
+        "x": 200,
+        "y": 1080
+      },
+      "data": {
+        "label": "Sõnum kliendile - 2",
+        "type": "step",
+        "stepType": "textfield",
+        "readonly": false,
+        "endpoint": {
+          "endpointId": "c0120e34-a023-4861-a33a-3fc9554e74e9",
+          "name": "commonMotorvehicletaxRegNumAPI",
+          "definitions": [
+            {
+              "id": "33cfe600-f3fd-40ab-ae89-7a306463d265",
+              "label": "",
+              "methodType": "GET",
+              "type": "custom",
+              "dataType": "custom",
+              "path": "",
+              "supported": true,
+              "isSelected": true,
+              "body": {
+                "variables": [],
+                "rawData": {}
+              },
+              "headers": {
+                "variables": [],
+                "rawData": {}
+              },
+              "params": {
+                "variables": [
+                  {
+                    "id": "3b7efd17-9a30-4760-bc0a-3d20d61c14e8",
+                    "name": "regNr",
+                    "type": "custom",
+                    "required": false,
+                    "value": "${registrationNumber}"
+                  },
+                  {
+                    "id": "0af6b8b1-2ede-4b5a-9c83-22421e680568",
+                    "name": "calculationYear",
+                    "type": "custom",
+                    "required": false,
+                    "value": "2025"
+                  },
+                  {
+                    "id": "da0484e6-cd42-433f-8837-5140c3942550",
+                    "name": "showRegFee",
+                    "type": "custom",
+                    "required": false,
+                    "value": "true"
+                  }
+                ],
+                "rawData": {}
+              },
+              "url": "https://avalik.emta.ee/msm-public/v1/vehicle-tax/calculate-by-reg-nr?regNr=%24%7BregistrationNumber%7D&calculationYear=2025&showRegFee=true"
+            }
+          ],
+          "isNew": false,
+          "type": "custom",
+          "isCommon": false,
+          "serviceId": "b5f5ec07-e140-4892-81ed-1c5fdacfcadf"
+        },
+        "message": "<p><span style=\"background-color: rgb(255, 255, 255);\">Sõiduki ${registrationNumber} aastamaks on kokku ${yearlyTotal}€. Millest baasosa on ${yearlyBase}€. CO₂ eriheite osa on ${yearlyCo2}€. Massiosa on ${yearlyMass}€. Registreerimistasu tuleb ${regTotal}€. Millest baasosa on ${regBase}€. CO₂ eriheite osa on ${regCo2}€. Massiosa on ${regMass}€.</span></p>",
+        "multiChoiceQuestion": {
+          "question": "",
+          "buttons": [
+            {
+              "id": "1",
+              "title": "Jah",
+              "payload": "#service, /POST/services/active/serviceDemo_mcq_3_0"
+            },
+            {
+              "id": "2",
+              "title": "Ei",
+              "payload": "#service, /POST/services/active/serviceDemo_mcq_3_1"
+            }
+          ]
+        },
+        "dynamicChoices": {
+          "list": "",
+          "serviceName": "",
+          "key": "",
+          "payloadKeys": ""
+        },
+        "testingPassed": true
+      },
+      "className": "step",
+      "type": "custom",
+      "measured": {
+        "width": 350,
+        "height": 66
+      },
+      "selected": false
+    },
+    {
+      "id": "ee1735b2-0b23-41b0-bfd5-c4ec5a4c98fe",
+      "position": {
+        "x": 0,
+        "y": 1260
+      },
+      "data": {
+        "label": "Teenuse lõpetamine - 1",
+        "type": "finishing-step",
+        "stepType": "finishing-step-end",
+        "readonly": true,
+        "testingPassed": true
+      },
+      "className": "finishing-step",
+      "type": "custom",
+      "measured": {
+        "width": 350,
+        "height": 66
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "422ff621-53bf-4ea4-b376-87c08c80c7fc->d16f8904-6c71-44f6-82cd-a2e94dcac669",
+      "source": "422ff621-53bf-4ea4-b376-87c08c80c7fc",
+      "target": "d16f8904-6c71-44f6-82cd-a2e94dcac669",
+      "type": "step",
+      "label": "+"
+    },
+    {
+      "id": "d16f8904-6c71-44f6-82cd-a2e94dcac669->e4528993-2e28-4422-ad6a-93a4b5f61710",
+      "source": "d16f8904-6c71-44f6-82cd-a2e94dcac669",
+      "target": "e4528993-2e28-4422-ad6a-93a4b5f61710",
+      "type": "step"
+    },
+    {
+      "id": "e4528993-2e28-4422-ad6a-93a4b5f61710->09926e48-c7f4-4fd0-b364-2f7dbe218f4b",
+      "source": "e4528993-2e28-4422-ad6a-93a4b5f61710",
+      "target": "09926e48-c7f4-4fd0-b364-2f7dbe218f4b",
+      "type": "step",
+      "label": "+"
+    },
+    {
+      "id": "09926e48-c7f4-4fd0-b364-2f7dbe218f4b->0f1e1120-1236-4659-a4d8-205a82b4de5a",
+      "source": "09926e48-c7f4-4fd0-b364-2f7dbe218f4b",
+      "target": "0f1e1120-1236-4659-a4d8-205a82b4de5a",
+      "type": "step"
+    },
+    {
+      "id": "700012c1-9b3b-4dbd-97f8-d4ef7a4cb45c->ee1735b2-0b23-41b0-bfd5-c4ec5a4c98fe",
+      "source": "700012c1-9b3b-4dbd-97f8-d4ef7a4cb45c",
+      "target": "ee1735b2-0b23-41b0-bfd5-c4ec5a4c98fe",
+      "type": "step"
+    },
+    {
+      "id": "10b26102-6fd2-4268-8a42-617c9c26830f->ee1735b2-0b23-41b0-bfd5-c4ec5a4c98fe",
+      "source": "10b26102-6fd2-4268-8a42-617c9c26830f",
+      "target": "ee1735b2-0b23-41b0-bfd5-c4ec5a4c98fe",
+      "type": "step"
+    },
+    {
+      "id": "0f1e1120-1236-4659-a4d8-205a82b4de5a->10b26102-6fd2-4268-8a42-617c9c26830f",
+      "source": "0f1e1120-1236-4659-a4d8-205a82b4de5a",
+      "target": "10b26102-6fd2-4268-8a42-617c9c26830f",
+      "type": "step",
+      "animated": false,
+      "deletable": true,
+      "label": "Success"
+    },
+    {
+      "id": "0f1e1120-1236-4659-a4d8-205a82b4de5a->7544de45-0e7d-4b52-b73d-53ca7990c82b",
+      "source": "0f1e1120-1236-4659-a4d8-205a82b4de5a",
+      "target": "7544de45-0e7d-4b52-b73d-53ca7990c82b",
+      "type": "step",
+      "label": "Failure"
+    },
+    {
+      "id": "7544de45-0e7d-4b52-b73d-53ca7990c82b->700012c1-9b3b-4dbd-97f8-d4ef7a4cb45c",
+      "source": "7544de45-0e7d-4b52-b73d-53ca7990c82b",
+      "target": "700012c1-9b3b-4dbd-97f8-d4ef7a4cb45c",
+      "type": "step",
+      "animated": false,
+      "deletable": true
+    }
+  ]
+}

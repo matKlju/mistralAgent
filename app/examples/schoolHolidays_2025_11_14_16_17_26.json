@@ -1,1 +1,467 @@
-{"nodes":[{"id":"422ff621-53bf-4ea4-b376-87c08c80c7fc","type":"start","position":{"x":0,"y":0},"data":{"type":"start","testingPassed":true},"className":"start","selectable":false,"draggable":false,"measured":{"width":350,"height":67}},{"id":"0b279df7-5ce7-4928-abe6-757ba3f34c8a","position":{"x":0,"y":180},"data":{"label":"Määra - 1","type":"step","stepType":"assign","readonly":false,"endpoint":{"endpointId":"6c5ecaba-85b2-4af0-ac91-cefc8950d77a","name":"commonRiigikoguVotingsAPI","definitions":[{"id":"f259f8df-f5a6-4f1b-97b5-47ec6637c7bb","label":"","methodType":"GET","type":"custom","dataType":"custom","path":"","supported":true,"isSelected":true,"body":{"variables":[],"rawData":{}},"headers":{"variables":[],"rawData":{}},"params":{"variables":[{"id":"966dcab5-db72-49fa-aeea-5fa0b1283d60","name":"endDate","type":"custom","required":false,"value":"${endDate}"},{"id":"faebbebb-8926-4d1d-b2f0-12f1601bda84","name":"lang","type":"custom","required":false,"value":"ET"},{"id":"aa74fde7-2159-4b80-9a25-49a358ddbbb4","name":"startDate","type":"custom","required":false,"value":"${startDate}"}],"rawData":{}},"url":"https://api.riigikogu.ee/api/votings?lang=ET&endDate=%24%7BendDate%7D&startDate=%24%7BstartDate%7D"}],"isNew":false,"type":"custom","isCommon":false,"serviceId":"b5f5ec07-e140-4892-81ed-1c5fdacfcadf"},"assignElements":[{"id":"e0d969f4-dcf6-4f6b-9f0e-9b4f19617e7a","key":"startDate","value":"${new Date(new Date().getFullYear(), 0, 1).toISOString().split('T')[0]}"},{"id":"7bbb1f50-6686-49cf-9033-06c9163ebc92","key":"endDate","value":"${new Date(new Date().getFullYear(), 11, 31).toISOString().split('T')[0]}"}],"multiChoiceQuestion":{"question":"","buttons":[{"id":"1","title":"Jah","payload":"#service, /POST/services/active/riigikoguMostRecent_mcq_1_0"},{"id":"2","title":"Ei","payload":"#service, /POST/services/active/riigikoguMostRecent_mcq_1_1"}]},"dynamicChoices":{"list":"","serviceName":"","key":"","payloadKeys":""},"testingPassed":true},"className":"step","type":"custom","measured":{"width":350,"height":42},"selected":false},{"id":"5c58cba6-0fc6-430d-8d8a-29c7ad99a50d","position":{"x":0,"y":360},"data":{"label":"commonSchoolHolidaysAPI - 1","type":"step","stepType":"user-defined","readonly":false,"endpoint":{"endpointId":"30bf97a3-17f9-46f5-a83f-dfeb0369da0a","name":"commonSchoolHolidaysAPI","definitions":[{"id":"76b03f4d-87eb-4964-b390-4b41b556b130","label":"","methodType":"GET","type":"custom","dataType":"custom","path":"","supported":true,"isSelected":true,"body":{"variables":[],"rawData":{}},"headers":{"variables":[],"rawData":{}},"params":{"variables":[{"id":"f36cabd3-b2f2-41e0-8a05-2f4c14fdbcb6","name":"countryIsoCode","type":"custom","required":false,"value":"EE"},{"id":"6a4cd685-979e-481c-b5c6-fd26085c1e32","name":"validFrom","type":"custom","required":false,"value":"${startDate}"},{"id":"121d2541-63fb-40c1-80f9-5519506036d6","name":"validTo","type":"custom","required":false,"value":"${endDate}"}],"rawData":{}},"url":"https://openholidaysapi.org/SchoolHolidays?countryIsoCode=EE&validFrom=%24%7BstartDate%7D&validTo=%24%7BendDate%7D"}],"isNew":false,"type":"custom","isCommon":false,"serviceId":"b5f5ec07-e140-4892-81ed-1c5fdacfcadf"},"testingPassed":true},"className":"step","type":"custom","measured":{"width":350,"height":42}},{"id":"2af19031-1968-42cf-b9b6-51849ce837c8","position":{"x":0,"y":540},"data":{"label":"Määra - 2","type":"step","stepType":"assign","readonly":false,"endpoint":{"endpointId":"6c5ecaba-85b2-4af0-ac91-cefc8950d77a","name":"commonRiigikoguVotingsAPI","definitions":[{"id":"f259f8df-f5a6-4f1b-97b5-47ec6637c7bb","label":"","methodType":"GET","type":"custom","dataType":"custom","path":"","supported":true,"isSelected":true,"body":{"variables":[],"rawData":{}},"headers":{"variables":[],"rawData":{}},"params":{"variables":[{"id":"966dcab5-db72-49fa-aeea-5fa0b1283d60","name":"endDate","type":"custom","required":false,"value":"${endDate}"},{"id":"faebbebb-8926-4d1d-b2f0-12f1601bda84","name":"lang","type":"custom","required":false,"value":"ET"},{"id":"aa74fde7-2159-4b80-9a25-49a358ddbbb4","name":"startDate","type":"custom","required":false,"value":"${startDate}"}],"rawData":{}},"url":"https://api.riigikogu.ee/api/votings?lang=ET&endDate=%24%7BendDate%7D&startDate=%24%7BstartDate%7D"}],"isNew":false,"type":"custom","isCommon":false,"serviceId":"b5f5ec07-e140-4892-81ed-1c5fdacfcadf"},"assignElements":[{"id":"6153ae64-576c-40a2-a76c-fbe9a4f96f1c","key":"responseData","value":"${commonSchoolHolidaysAPI_res.response.body}"},{"id":"49eb2f19-7a0d-4633-b4cf-0b24125016f6","key":"formatedData","value":"${responseData.map(o => \"* \" + o.startDate + \" - \" + o.endDate + \" : \" + o.name[0].text).join(\", \")}"}],"multiChoiceQuestion":{"question":"","buttons":[{"id":"1","title":"Jah","payload":"#service, /POST/services/active/schoolHolidays_mcq_1_0"},{"id":"2","title":"Ei","payload":"#service, /POST/services/active/schoolHolidays_mcq_1_1"}]},"dynamicChoices":{"list":"","serviceName":"","key":"","payloadKeys":""},"testingPassed":true},"className":"step","type":"custom","measured":{"width":350,"height":42},"selected":false},{"id":"0eabeb94-593a-496e-9018-846cb9654101","position":{"x":0,"y":720},"data":{"label":"Sõnum kliendile - 1","type":"step","stepType":"textfield","readonly":false,"endpoint":{"endpointId":"6c5ecaba-85b2-4af0-ac91-cefc8950d77a","name":"commonRiigikoguVotingsAPI","definitions":[{"id":"f259f8df-f5a6-4f1b-97b5-47ec6637c7bb","label":"","methodType":"GET","type":"custom","dataType":"custom","path":"","supported":true,"isSelected":true,"body":{"variables":[],"rawData":{}},"headers":{"variables":[],"rawData":{}},"params":{"variables":[{"id":"966dcab5-db72-49fa-aeea-5fa0b1283d60","name":"endDate","type":"custom","required":false,"value":"${endDate}"},{"id":"faebbebb-8926-4d1d-b2f0-12f1601bda84","name":"lang","type":"custom","required":false,"value":"ET"},{"id":"aa74fde7-2159-4b80-9a25-49a358ddbbb4","name":"startDate","type":"custom","required":false,"value":"${startDate}"}],"rawData":{}},"url":"https://api.riigikogu.ee/api/votings?lang=ET&endDate=%24%7BendDate%7D&startDate=%24%7BstartDate%7D"}],"isNew":false,"type":"custom","isCommon":false,"serviceId":"b5f5ec07-e140-4892-81ed-1c5fdacfcadf"},"message":"<p><span style=\"background-color: rgb(255, 255, 255);\">Kõik koolivaheajad sellel aasatal on: ${formatedData}</span></p>","multiChoiceQuestion":{"question":"","buttons":[{"id":"1","title":"Jah","payload":"#service, /POST/services/active/schoolHolidays_mcq_2_0"},{"id":"2","title":"Ei","payload":"#service, /POST/services/active/schoolHolidays_mcq_2_1"}]},"dynamicChoices":{"list":"","serviceName":"","key":"","payloadKeys":""},"testingPassed":true},"className":"step","type":"custom","measured":{"width":350,"height":66},"selected":false},{"id":"7f8224e9-79e6-4efc-bc44-4efbb2c5afbe","position":{"x":0,"y":900},"data":{"label":"Teenuse lõpetamine - 1","type":"finishing-step","stepType":"finishing-step-end","readonly":true,"testingPassed":true},"className":"finishing-step","type":"custom","measured":{"width":350,"height":66}}],"edges":[{"id":"422ff621-53bf-4ea4-b376-87c08c80c7fc->0b279df7-5ce7-4928-abe6-757ba3f34c8a","source":"422ff621-53bf-4ea4-b376-87c08c80c7fc","target":"0b279df7-5ce7-4928-abe6-757ba3f34c8a","type":"step","label":"+"},{"id":"0b279df7-5ce7-4928-abe6-757ba3f34c8a->5c58cba6-0fc6-430d-8d8a-29c7ad99a50d","source":"0b279df7-5ce7-4928-abe6-757ba3f34c8a","target":"5c58cba6-0fc6-430d-8d8a-29c7ad99a50d","type":"step"},{"id":"5c58cba6-0fc6-430d-8d8a-29c7ad99a50d->2af19031-1968-42cf-b9b6-51849ce837c8","source":"5c58cba6-0fc6-430d-8d8a-29c7ad99a50d","target":"2af19031-1968-42cf-b9b6-51849ce837c8","type":"step"},{"id":"2af19031-1968-42cf-b9b6-51849ce837c8->0eabeb94-593a-496e-9018-846cb9654101","source":"2af19031-1968-42cf-b9b6-51849ce837c8","target":"0eabeb94-593a-496e-9018-846cb9654101","type":"step"},{"id":"0eabeb94-593a-496e-9018-846cb9654101->7f8224e9-79e6-4efc-bc44-4efbb2c5afbe","source":"0eabeb94-593a-496e-9018-846cb9654101","target":"7f8224e9-79e6-4efc-bc44-4efbb2c5afbe","type":"step"}]}
+{
+  "nodes": [
+    {
+      "id": "422ff621-53bf-4ea4-b376-87c08c80c7fc",
+      "type": "start",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "data": {
+        "type": "start",
+        "testingPassed": true
+      },
+      "className": "start",
+      "selectable": false,
+      "draggable": false,
+      "measured": {
+        "width": 350,
+        "height": 67
+      }
+    },
+    {
+      "id": "0b279df7-5ce7-4928-abe6-757ba3f34c8a",
+      "position": {
+        "x": 0,
+        "y": 180
+      },
+      "data": {
+        "label": "Määra - 1",
+        "type": "step",
+        "stepType": "assign",
+        "readonly": false,
+        "endpoint": {
+          "endpointId": "6c5ecaba-85b2-4af0-ac91-cefc8950d77a",
+          "name": "commonRiigikoguVotingsAPI",
+          "definitions": [
+            {
+              "id": "f259f8df-f5a6-4f1b-97b5-47ec6637c7bb",
+              "label": "",
+              "methodType": "GET",
+              "type": "custom",
+              "dataType": "custom",
+              "path": "",
+              "supported": true,
+              "isSelected": true,
+              "body": {
+                "variables": [],
+                "rawData": {}
+              },
+              "headers": {
+                "variables": [],
+                "rawData": {}
+              },
+              "params": {
+                "variables": [
+                  {
+                    "id": "966dcab5-db72-49fa-aeea-5fa0b1283d60",
+                    "name": "endDate",
+                    "type": "custom",
+                    "required": false,
+                    "value": "${endDate}"
+                  },
+                  {
+                    "id": "faebbebb-8926-4d1d-b2f0-12f1601bda84",
+                    "name": "lang",
+                    "type": "custom",
+                    "required": false,
+                    "value": "ET"
+                  },
+                  {
+                    "id": "aa74fde7-2159-4b80-9a25-49a358ddbbb4",
+                    "name": "startDate",
+                    "type": "custom",
+                    "required": false,
+                    "value": "${startDate}"
+                  }
+                ],
+                "rawData": {}
+              },
+              "url": "https://api.riigikogu.ee/api/votings?lang=ET&endDate=%24%7BendDate%7D&startDate=%24%7BstartDate%7D"
+            }
+          ],
+          "isNew": false,
+          "type": "custom",
+          "isCommon": false,
+          "serviceId": "b5f5ec07-e140-4892-81ed-1c5fdacfcadf"
+        },
+        "assignElements": [
+          {
+            "id": "e0d969f4-dcf6-4f6b-9f0e-9b4f19617e7a",
+            "key": "startDate",
+            "value": "${new Date(new Date().getFullYear(), 0, 1).toISOString().split('T')[0]}"
+          },
+          {
+            "id": "7bbb1f50-6686-49cf-9033-06c9163ebc92",
+            "key": "endDate",
+            "value": "${new Date(new Date().getFullYear(), 11, 31).toISOString().split('T')[0]}"
+          }
+        ],
+        "multiChoiceQuestion": {
+          "question": "",
+          "buttons": [
+            {
+              "id": "1",
+              "title": "Jah",
+              "payload": "#service, /POST/services/active/riigikoguMostRecent_mcq_1_0"
+            },
+            {
+              "id": "2",
+              "title": "Ei",
+              "payload": "#service, /POST/services/active/riigikoguMostRecent_mcq_1_1"
+            }
+          ]
+        },
+        "dynamicChoices": {
+          "list": "",
+          "serviceName": "",
+          "key": "",
+          "payloadKeys": ""
+        },
+        "testingPassed": true
+      },
+      "className": "step",
+      "type": "custom",
+      "measured": {
+        "width": 350,
+        "height": 42
+      },
+      "selected": false
+    },
+    {
+      "id": "5c58cba6-0fc6-430d-8d8a-29c7ad99a50d",
+      "position": {
+        "x": 0,
+        "y": 360
+      },
+      "data": {
+        "label": "commonSchoolHolidaysAPI - 1",
+        "type": "step",
+        "stepType": "user-defined",
+        "readonly": false,
+        "endpoint": {
+          "endpointId": "30bf97a3-17f9-46f5-a83f-dfeb0369da0a",
+          "name": "commonSchoolHolidaysAPI",
+          "definitions": [
+            {
+              "id": "76b03f4d-87eb-4964-b390-4b41b556b130",
+              "label": "",
+              "methodType": "GET",
+              "type": "custom",
+              "dataType": "custom",
+              "path": "",
+              "supported": true,
+              "isSelected": true,
+              "body": {
+                "variables": [],
+                "rawData": {}
+              },
+              "headers": {
+                "variables": [],
+                "rawData": {}
+              },
+              "params": {
+                "variables": [
+                  {
+                    "id": "f36cabd3-b2f2-41e0-8a05-2f4c14fdbcb6",
+                    "name": "countryIsoCode",
+                    "type": "custom",
+                    "required": false,
+                    "value": "EE"
+                  },
+                  {
+                    "id": "6a4cd685-979e-481c-b5c6-fd26085c1e32",
+                    "name": "validFrom",
+                    "type": "custom",
+                    "required": false,
+                    "value": "${startDate}"
+                  },
+                  {
+                    "id": "121d2541-63fb-40c1-80f9-5519506036d6",
+                    "name": "validTo",
+                    "type": "custom",
+                    "required": false,
+                    "value": "${endDate}"
+                  }
+                ],
+                "rawData": {}
+              },
+              "url": "https://openholidaysapi.org/SchoolHolidays?countryIsoCode=EE&validFrom=%24%7BstartDate%7D&validTo=%24%7BendDate%7D"
+            }
+          ],
+          "isNew": false,
+          "type": "custom",
+          "isCommon": false,
+          "serviceId": "b5f5ec07-e140-4892-81ed-1c5fdacfcadf"
+        },
+        "testingPassed": true
+      },
+      "className": "step",
+      "type": "custom",
+      "measured": {
+        "width": 350,
+        "height": 42
+      }
+    },
+    {
+      "id": "2af19031-1968-42cf-b9b6-51849ce837c8",
+      "position": {
+        "x": 0,
+        "y": 540
+      },
+      "data": {
+        "label": "Määra - 2",
+        "type": "step",
+        "stepType": "assign",
+        "readonly": false,
+        "endpoint": {
+          "endpointId": "6c5ecaba-85b2-4af0-ac91-cefc8950d77a",
+          "name": "commonRiigikoguVotingsAPI",
+          "definitions": [
+            {
+              "id": "f259f8df-f5a6-4f1b-97b5-47ec6637c7bb",
+              "label": "",
+              "methodType": "GET",
+              "type": "custom",
+              "dataType": "custom",
+              "path": "",
+              "supported": true,
+              "isSelected": true,
+              "body": {
+                "variables": [],
+                "rawData": {}
+              },
+              "headers": {
+                "variables": [],
+                "rawData": {}
+              },
+              "params": {
+                "variables": [
+                  {
+                    "id": "966dcab5-db72-49fa-aeea-5fa0b1283d60",
+                    "name": "endDate",
+                    "type": "custom",
+                    "required": false,
+                    "value": "${endDate}"
+                  },
+                  {
+                    "id": "faebbebb-8926-4d1d-b2f0-12f1601bda84",
+                    "name": "lang",
+                    "type": "custom",
+                    "required": false,
+                    "value": "ET"
+                  },
+                  {
+                    "id": "aa74fde7-2159-4b80-9a25-49a358ddbbb4",
+                    "name": "startDate",
+                    "type": "custom",
+                    "required": false,
+                    "value": "${startDate}"
+                  }
+                ],
+                "rawData": {}
+              },
+              "url": "https://api.riigikogu.ee/api/votings?lang=ET&endDate=%24%7BendDate%7D&startDate=%24%7BstartDate%7D"
+            }
+          ],
+          "isNew": false,
+          "type": "custom",
+          "isCommon": false,
+          "serviceId": "b5f5ec07-e140-4892-81ed-1c5fdacfcadf"
+        },
+        "assignElements": [
+          {
+            "id": "6153ae64-576c-40a2-a76c-fbe9a4f96f1c",
+            "key": "responseData",
+            "value": "${commonSchoolHolidaysAPI_res.response.body}"
+          },
+          {
+            "id": "49eb2f19-7a0d-4633-b4cf-0b24125016f6",
+            "key": "formatedData",
+            "value": "${responseData.map(o => \"* \" + o.startDate + \" - \" + o.endDate + \" : \" + o.name[0].text).join(\", \")}"
+          }
+        ],
+        "multiChoiceQuestion": {
+          "question": "",
+          "buttons": [
+            {
+              "id": "1",
+              "title": "Jah",
+              "payload": "#service, /POST/services/active/schoolHolidays_mcq_1_0"
+            },
+            {
+              "id": "2",
+              "title": "Ei",
+              "payload": "#service, /POST/services/active/schoolHolidays_mcq_1_1"
+            }
+          ]
+        },
+        "dynamicChoices": {
+          "list": "",
+          "serviceName": "",
+          "key": "",
+          "payloadKeys": ""
+        },
+        "testingPassed": true
+      },
+      "className": "step",
+      "type": "custom",
+      "measured": {
+        "width": 350,
+        "height": 42
+      },
+      "selected": false
+    },
+    {
+      "id": "0eabeb94-593a-496e-9018-846cb9654101",
+      "position": {
+        "x": 0,
+        "y": 720
+      },
+      "data": {
+        "label": "Sõnum kliendile - 1",
+        "type": "step",
+        "stepType": "textfield",
+        "readonly": false,
+        "endpoint": {
+          "endpointId": "6c5ecaba-85b2-4af0-ac91-cefc8950d77a",
+          "name": "commonRiigikoguVotingsAPI",
+          "definitions": [
+            {
+              "id": "f259f8df-f5a6-4f1b-97b5-47ec6637c7bb",
+              "label": "",
+              "methodType": "GET",
+              "type": "custom",
+              "dataType": "custom",
+              "path": "",
+              "supported": true,
+              "isSelected": true,
+              "body": {
+                "variables": [],
+                "rawData": {}
+              },
+              "headers": {
+                "variables": [],
+                "rawData": {}
+              },
+              "params": {
+                "variables": [
+                  {
+                    "id": "966dcab5-db72-49fa-aeea-5fa0b1283d60",
+                    "name": "endDate",
+                    "type": "custom",
+                    "required": false,
+                    "value": "${endDate}"
+                  },
+                  {
+                    "id": "faebbebb-8926-4d1d-b2f0-12f1601bda84",
+                    "name": "lang",
+                    "type": "custom",
+                    "required": false,
+                    "value": "ET"
+                  },
+                  {
+                    "id": "aa74fde7-2159-4b80-9a25-49a358ddbbb4",
+                    "name": "startDate",
+                    "type": "custom",
+                    "required": false,
+                    "value": "${startDate}"
+                  }
+                ],
+                "rawData": {}
+              },
+              "url": "https://api.riigikogu.ee/api/votings?lang=ET&endDate=%24%7BendDate%7D&startDate=%24%7BstartDate%7D"
+            }
+          ],
+          "isNew": false,
+          "type": "custom",
+          "isCommon": false,
+          "serviceId": "b5f5ec07-e140-4892-81ed-1c5fdacfcadf"
+        },
+        "message": "<p><span style=\"background-color: rgb(255, 255, 255);\">Kõik koolivaheajad sellel aasatal on: ${formatedData}</span></p>",
+        "multiChoiceQuestion": {
+          "question": "",
+          "buttons": [
+            {
+              "id": "1",
+              "title": "Jah",
+              "payload": "#service, /POST/services/active/schoolHolidays_mcq_2_0"
+            },
+            {
+              "id": "2",
+              "title": "Ei",
+              "payload": "#service, /POST/services/active/schoolHolidays_mcq_2_1"
+            }
+          ]
+        },
+        "dynamicChoices": {
+          "list": "",
+          "serviceName": "",
+          "key": "",
+          "payloadKeys": ""
+        },
+        "testingPassed": true
+      },
+      "className": "step",
+      "type": "custom",
+      "measured": {
+        "width": 350,
+        "height": 66
+      },
+      "selected": false
+    },
+    {
+      "id": "7f8224e9-79e6-4efc-bc44-4efbb2c5afbe",
+      "position": {
+        "x": 0,
+        "y": 900
+      },
+      "data": {
+        "label": "Teenuse lõpetamine - 1",
+        "type": "finishing-step",
+        "stepType": "finishing-step-end",
+        "readonly": true,
+        "testingPassed": true
+      },
+      "className": "finishing-step",
+      "type": "custom",
+      "measured": {
+        "width": 350,
+        "height": 66
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "422ff621-53bf-4ea4-b376-87c08c80c7fc->0b279df7-5ce7-4928-abe6-757ba3f34c8a",
+      "source": "422ff621-53bf-4ea4-b376-87c08c80c7fc",
+      "target": "0b279df7-5ce7-4928-abe6-757ba3f34c8a",
+      "type": "step",
+      "label": "+"
+    },
+    {
+      "id": "0b279df7-5ce7-4928-abe6-757ba3f34c8a->5c58cba6-0fc6-430d-8d8a-29c7ad99a50d",
+      "source": "0b279df7-5ce7-4928-abe6-757ba3f34c8a",
+      "target": "5c58cba6-0fc6-430d-8d8a-29c7ad99a50d",
+      "type": "step"
+    },
+    {
+      "id": "5c58cba6-0fc6-430d-8d8a-29c7ad99a50d->2af19031-1968-42cf-b9b6-51849ce837c8",
+      "source": "5c58cba6-0fc6-430d-8d8a-29c7ad99a50d",
+      "target": "2af19031-1968-42cf-b9b6-51849ce837c8",
+      "type": "step"
+    },
+    {
+      "id": "2af19031-1968-42cf-b9b6-51849ce837c8->0eabeb94-593a-496e-9018-846cb9654101",
+      "source": "2af19031-1968-42cf-b9b6-51849ce837c8",
+      "target": "0eabeb94-593a-496e-9018-846cb9654101",
+      "type": "step"
+    },
+    {
+      "id": "0eabeb94-593a-496e-9018-846cb9654101->7f8224e9-79e6-4efc-bc44-4efbb2c5afbe",
+      "source": "0eabeb94-593a-496e-9018-846cb9654101",
+      "target": "7f8224e9-79e6-4efc-bc44-4efbb2c5afbe",
+      "type": "step"
+    }
+  ]
+}
