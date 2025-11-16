@@ -3,7 +3,9 @@
 from __future__ import annotations
 
 import json
+import time
 import uuid
+from datetime import datetime
 
 from app import create_agent
 from app.constants import DEFAULT_OUTPUT_PATH, DEFAULT_SAMPLE_QUESTION
@@ -80,13 +82,17 @@ def ensure_uuid_node_ids(text: str) -> str:
 def main() -> None:
     """Generate a service response using default configuration values."""
 
+    print("Generating...")
     agent = create_agent()
     context_value = load_default_context()
+    start_time = time.perf_counter()
     response = agent.run(DEFAULT_SAMPLE_QUESTION, context=context_value)
     cleaned_response = strip_code_fences(response)
     normalized_response = ensure_uuid_node_ids(cleaned_response)
     DEFAULT_OUTPUT_PATH.write_text(normalized_response, encoding="utf-8")
-    print(normalized_response)
+    duration = time.perf_counter() - start_time
+    timestamp = datetime.now().strftime("%H:%M")
+    print(f"Service ready in {duration:.2f}s at {timestamp}.")
 
 
 if __name__ == "__main__":  # pragma: no cover - CLI entry point
