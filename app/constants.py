@@ -41,7 +41,7 @@ except OSError:
 #DEFAULT_SAMPLE_QUESTION = "Loo teenus, mis kõik käesoleva aasta Eesti riigipühad. Kasuta seda API-t: https://openholidaysapi.org/swagger/v1/swagger.json"
 
 # National holidays YTD - OK
-DEFAULT_SAMPLE_QUESTION = "Build a service that retrieves Estonia’s national holidays for the current year - year-to-date — from January 1st up to today — using the OpenHolidays API (spec: https://openholidaysapi.org/swagger/v1/swagger.json)."
+#DEFAULT_SAMPLE_QUESTION = "Build a service that retrieves Estonia’s national holidays for the current year - year-to-date — from January 1st up to today — using the OpenHolidays API (spec: https://openholidaysapi.org/swagger/v1/swagger.json)."
 #DEFAULT_SAMPLE_QUESTION = "Loo teenus, mis tagastab käesoleva aasta Eesti riigipühad aasta algusest kuni tänase kuupäevani. Kasuta seda API-t: https://openholidaysapi.org/swagger/v1/swagger.json"
 
 # National holidays EOY - OK
@@ -65,7 +65,7 @@ DEFAULT_SAMPLE_QUESTION = "Build a service that retrieves Estonia’s national h
 #DEFAULT_SAMPLE_QUESTION = "Loo teenus, mis võtab sisendiks Eesti riigipüha nime ja tagastab, mis ajal on antud püha käesoleval aastal. Kasuta seda API-t: https://openholidaysapi.org/swagger/v1/swagger.json"
 
 # Currency exchange rate - OK
-#DEFAULT_SAMPLE_QUESTION = "Loo mulle valuuta võrdluse teenuse. Teenuse sisendiks on valuuta kood, mille edastab kasutaja. Ning tagasta antud valuuta kurss vastu Eurot"
+DEFAULT_SAMPLE_QUESTION = "Loo mulle valuuta võrdluse teenuse. Teenuse sisendiks on valuuta kood, mille edastab kasutaja. Ning tagasta antud valuuta kurss vastu Eurot"
 
 #DEFAULT_SAMPLE_QUESTION = "Loo mulle valuuta võrdluse teenuse. Teenuse sisendiks on valuuta kood, mille edastab kasutaja. kui antud valuuta koodi pole või ta on olematu tagasta teavitus, et antud valuutakoodi ei leitud. Teenuse sisendi peab muutma suurteks tähtedeks. Kui valuuta kood leitakse, tagasta antud valuuta kurss vastu Eurot"
 
